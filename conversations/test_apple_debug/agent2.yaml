@@ -1,0 +1,12 @@
+spec_version: v1
+kind: native
+name: policy_compliance_agent
+llm: watsonx/ibm/granite-3-8b-instruct
+style: react
+description: >
+  An agent to verify policy adherence and compliance for new app submissions.
+instructions: >
+  Use the policy_checker_tool to assess compliance and provide feedback.
+collaborators: []
+tools:
+  - policy_checker_tool

@@ -1,0 +1,13 @@
+spec_version: v1
+kind: native
+name: troubleshooting_agent
+llm: watsonx/ibm/granite-3-8b-instruct
+style: default
+description: >
+  An agent designed to troubleshoot common app issues using the troubleshoot_tool and issue_resolver.
+instructions: >
+  Use troubleshoot_tool and issue_resolver to diagnose and resolve app issues.
+collaborators: []
+tools:
+  - troubleshoot_tool
+  - issue_resolver

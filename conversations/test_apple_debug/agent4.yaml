@@ -1,0 +1,13 @@
+spec_version: v1
+kind: native
+name: query_routing_agent
+llm: watsonx/ibm/granite-3-8b-instruct
+style: planner
+description: >
+  An agent to route and prioritize developer queries using the query_router and priority_manager.
+instructions: >
+  Use query_router to direct queries and priority_manager to prioritize them based on urgency.
+collaborators: []
+tools:
+  - query_router
+  - priority_manager

@@ -1,0 +1,12 @@
+spec_version: v1
+kind: native
+name: documentation_retrieval_agent
+llm: watsonx/ibm/granite-3-8b-instruct
+style: default
+description: >
+  An agent designed to automate the retrieval of developer documentation using the doc_search_tool.
+instructions: >
+  Use the doc_search_tool to find relevant documentation based on the user's query.
+collaborators: []
+tools:
+  - doc_search_tool
