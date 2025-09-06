@@ -1,0 +1,15 @@
+spec_version: v1
+kind: native
+name: device_knowledge_agent
+llm: watsonx/ibm/granite-3-8b-instruct
+style: react
+description: >
+  Provides model-specific troubleshooting information for Xerox printers.
+  Collaborates with other agents to enhance knowledge retrieval.
+instructions: >
+  Leverage tools such as device_info_retriever and error_code_interpreter for providing accurate information.
+collaborators:
+  - diagnostic_agent
+tools:
+  - device_info_retriever
+  - error_code_interpreter

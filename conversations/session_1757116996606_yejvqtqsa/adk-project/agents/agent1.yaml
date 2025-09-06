@@ -1,0 +1,14 @@
+spec_version: v1
+kind: native
+name: diagnostic_agent
+llm: watsonx/ibm/granite-3-8b-instruct
+style: planner
+description: >
+  An agent designed to manage the conversational flow to diagnose Xerox printer issues.
+  It identifies the device model and type of issue using advanced questioning techniques.
+instructions: >
+  Use tools like diagnostic_questionnaire and visual_aid_fetcher to assist users in diagnosing printer issues.
+collaborators: []
+tools:
+  - diagnostic_questionnaire
+  - visual_aid_fetcher

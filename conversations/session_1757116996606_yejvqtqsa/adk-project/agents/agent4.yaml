@@ -1,0 +1,13 @@
+spec_version: v1
+kind: native
+name: escalation_agent
+llm: watsonx/ibm/granite-3-8b-instruct
+style: planner
+description: >
+  Identifies complex printer issues that require human intervention and facilitates seamless escalation.
+instructions: >
+  Use escalation_tracker and ticket_creator to manage escalations efficiently.
+collaborators: []
+tools:
+  - escalation_tracker
+  - ticket_creator

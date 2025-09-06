@@ -1,0 +1,14 @@
+spec_version: v1
+kind: native
+name: solution_retrieval_agent
+llm: watsonx/ibm/granite-3-8b-instruct
+style: default
+description: >
+  Retrieves and executes solutions for identified printer issues from the knowledge base.
+  Integrates with watsonx.ai for enhanced solution retrieval.
+instructions: >
+  Utilize solution_finder and fix_executor tools to provide immediate fixes to common issues.
+collaborators: []
+tools:
+  - solution_finder
+  - fix_executor
