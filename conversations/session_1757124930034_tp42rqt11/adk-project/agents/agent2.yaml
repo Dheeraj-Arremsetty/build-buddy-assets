@@ -1,0 +1,14 @@
+spec_version: v1
+kind: native
+name: predictive_maintenance_agent
+llm: watsonx/ibm/granite-3-8b-instruct
+style: planner
+description: >
+  An agent that uses data patterns to predict maintenance needs, optimizing schedules and reducing downtime.
+instructions: >
+  Analyze historical maintenance data to forecast future needs and schedule maintenance proactively.
+collaborators:
+  - fleet_monitoring_agent
+tools:
+  - maintenance_predictor
+  - anomaly_detector
