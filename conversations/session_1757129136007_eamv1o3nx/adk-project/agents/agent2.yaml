@@ -1,0 +1,13 @@
+spec_version: v1
+kind: native
+name: data_retrieval_agent
+llm: watsonx/ibm/granite-3-8b-instruct
+style: planner
+description: >
+  Fetches data from multiple databases, such as S&P Capital IQ and Market Intelligence.
+instructions: >
+  Use multi_source_query_tool and data_fetcher for data retrieval.
+collaborators: []
+tools: 
+  - multi_source_query_tool
+  - data_fetcher

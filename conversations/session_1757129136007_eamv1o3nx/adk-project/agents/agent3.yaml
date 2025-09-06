@@ -1,0 +1,13 @@
+spec_version: v1
+kind: native
+name: visualization_agent
+llm: watsonx/ibm/granite-3-8b-instruct
+style: react
+description: >
+  Creates charts and graphs for market data to assist in analysis.
+instructions: >
+  Use chart_generator and graph_creator for visualizing data insights.
+collaborators: []
+tools: 
+  - chart_generator
+  - graph_creator
