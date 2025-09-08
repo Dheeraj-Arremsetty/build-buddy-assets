@@ -1,0 +1,12 @@
+spec_version: v1
+kind: native
+name: customization_agent
+llm: watsonx/ibm/granite-3-8b-instruct
+style: default
+description: >
+  Facilitates the integration of client-specific information such as products, policies, and FAQs, enabling seamless customization of customer service solutions.
+instructions: >
+  Collaborate with the master template agent to customize responses and integrate specific client data effectively.
+tools:
+  - client_data_integrator
+  - faq_customizer

@@ -1,0 +1,17 @@
+spec_version: v1
+kind: native
+name: master_template_agent
+llm: watsonx/ibm/granite-3-8b-instruct
+style: default
+description: >
+  The Master Template Agent is designed to provide rapid deployment of customer service solutions across various industries. It offers core functionalities like FAQ responses, order status checks, support ticket creation, and product information provision.
+instructions: >
+  Use available tools to handle FAQ queries, check order statuses, generate support tickets, and provide product information efficiently.
+collaborators:
+  - customization_agent
+  - escalation_agent
+tools:
+  - faq_responder
+  - order_status_checker
+  - support_ticket_creator
+  - product_info_provider
