@@ -1,0 +1,12 @@
+# knowledge_base_config.yaml
+spec_version: v1
+kind: knowledge_base
+name: financial_regulations_kb
+description: >
+   Contains essential financial regulations and compliance mandates for FinCorp Analytics,
+   including Anti-Money Laundering (AML), Sarbanes-Oxley (SOX), and Know Your Customer (KYC) protocols.
+   Use this to verify if a transaction or activity is compliant.
+documents:
+   - "knowledge_base_docs/fincorp_regulations.txt"
+vector_index:
+   embeddings_model_name: ibm/slate-125m-english-rvr-v2
