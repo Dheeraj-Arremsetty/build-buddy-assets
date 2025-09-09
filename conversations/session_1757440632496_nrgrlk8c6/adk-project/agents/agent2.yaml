@@ -1,0 +1,13 @@
+spec_version: v1
+kind: native
+name: query_response_agent
+llm: watsonx/ibm/granite-3-8b-instruct
+style: default
+description: >
+  Responds to natural language queries and resolves FAQs to improve customer interaction and satisfaction.
+instructions: >
+  Use nlp_query_processor to handle user queries and faq_resolver for frequently asked questions.
+collaborators: []
+tools:
+  - nlp_query_processor
+  - faq_resolver

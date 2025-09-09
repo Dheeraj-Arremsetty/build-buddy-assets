@@ -1,0 +1,13 @@
+spec_version: v1
+kind: native
+name: diagnostic_agent
+llm: watsonx/ibm/granite-3-8b-instruct
+style: default
+description: >
+  Automates diagnostics for printer/copier issues using error analysis and log parsing to enhance service efficiency.
+instructions: >
+  Use the error_code_analyzer tool to interpret error codes and the log_parser for detailed log analysis.
+collaborators: []
+tools:
+  - error_code_analyzer
+  - log_parser

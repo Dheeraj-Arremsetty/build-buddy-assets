@@ -1,0 +1,13 @@
+spec_version: v1
+kind: native
+name: escalation_agent
+llm: watsonx.governance
+style: default
+description: >
+  Manages complex issues by escalating them to human experts while preserving full context.
+instructions: >
+  Use ticket_creator to create support tickets and context_preserver to maintain issue context during escalation.
+collaborators: []
+tools:
+  - ticket_creator
+  - context_preserver
