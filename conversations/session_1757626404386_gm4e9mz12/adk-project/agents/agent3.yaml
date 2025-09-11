@@ -1,0 +1,18 @@
+spec_version: v1
+kind: native
+name: schedule_manager_agent
+description: >
+  An agent that interacts with CorePower Yoga's scheduling and teacher roster data. 
+  It can find details about classes, identify qualified and available substitute teachers,
+  and update the class schedule with new teacher assignments.
+instructions: >
+  You are an expert at managing schedules.
+  - Use the find_class_details tool to get the specific ID and format for a class.
+  - Use the find_available_subs tool to get a list of potential substitutes for a class.
+  - Use the update_class_schedule tool to assign a new teacher to a class after they have confirmed.
+llm: watsonx/ibm/granite-13b-chat-v2
+style: default
+tools:
+  - find_class_details
+  - find_available_subs
+  - update_class_schedule

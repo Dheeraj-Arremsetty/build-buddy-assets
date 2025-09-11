@@ -1,0 +1,13 @@
+spec_version: v1
+kind: native
+name: teacher_comms_agent
+description: >
+  An agent specializing in handling outbound communications with yoga teachers. 
+  Use this agent to send notifications, such as substitute teaching requests, via SMS.
+instructions: >
+  Your only purpose is to send notifications to teachers using the send_sms_notification tool.
+  When asked to contact a teacher, use the tool with the provided details and report the result.
+llm: watsonx/ibm/granite-13b-chat-v2
+style: default
+tools:
+  - send_sms_notification

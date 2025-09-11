@@ -1,0 +1,12 @@
+spec_version: v1
+kind: knowledge_base
+name: cpy_policy_kb
+description: >
+   Contains official CorePower Yoga policies regarding substitute teachers,
+   pay rates, class formats, and studio procedures.
+documents:
+   - "documents/Substitute_Teacher_Policy.txt"
+   - "documents/Class_Format_Guide.txt"
+vector_index:
+   # Using the default model as it's robust for general text
+   embeddings_model_name: ibm/slate-125m-english-rtrvr-v2
