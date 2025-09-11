@@ -1,0 +1,98 @@
+spec_version: v1
+    kind: knowledge_base
+    name: Store_Operations_KB
+    description: >
+       Contains official documents for store operations, including the Partner Handbook for HR policies (like dress code and sick leave) and the Store Operations Manual for procedures (like opening and closing). Use this to answer any questions about company policy or standard operating procedures.
+    documents:
+       - "./mock_docs/Partner_Handbook.pdf"
+       - "./mock_docs/Store_Ops_Manual.pdf"
+    vector_index:
+       embeddings_model_name: ibm/slate-125m-english-rtrvr-v2
+    ```
+
+## Step 4: Create Agent Configurations (YAML)
+
+With the tools and knowledge base defined, we now create the YAML configurations for our three agents, defining their roles, capabilities, and instructions according to the supervisor-collaborator pattern.
+
+### Collaborator Agent 1: Store Data Agent
+
+This agent is a specialist, focused exclusively on operational data. Its description is crafted to attract queries related to sales, inventory, and stock levels, making it the clear choice for the supervisor when such a request is made.
+
+*   **`agents/store_data_agent.yaml`**
+
+    ```yaml
+    spec_version: v1
+    kind: native
+    name: Store_Data_Agent
+    llm: watsonx/ibm/granite-3-8b-instruct
+    style: default
+    description: >
+        An agent specializing in retrieving store operational data. Use this agent for any questions related to current inventory levels, stock quantities of items, and daily sales performance reports. It connects directly to the store's data systems.
+    instructions: >
+        You are an expert at querying store data systems. Your purpose is to provide precise, factual data.
+        - Phase 1: Understand the user's data request. Identify if they are asking for inventory or sales data.
+        - Phase 2: Use the 'get_inventory_level' tool when the user asks about the quantity of a specific item.
+        - Phase 3: Use the 'get_daily_sales_report' tool when the user asks for sales figures or the day's performance summary.
+        - Phase 4: Review the output from the tool for accuracy.
+        - Phase 5: Present only the requested data to the user in a clear, concise format. Do not add any extra commentary unless an error occurred.
+    collaborators: []
+    tools:
+      - get_inventory_level
+      - get_daily_sales_report
+    ```
+
+### Collaborator Agent 2: Partner Support Agent
+
+This RAG agent handles all partner-related tasks. Its description highlights its ability to look up schedules (a structured task using a tool) and answer policy questions (an unstructured task using the knowledge base), making it the designated expert for HR-related queries.
+
+*   **`agents/partner_support_agent.yaml`**
+
+    ```yaml
+    spec_version: v1
+    kind: native
+    name: Partner_Support_Agent
+    llm: watsonx/ibm/granite-3-8b-instruct
+    style: default
+    description: >
+        An agent specializing in partner (employee) support tasks. Use this agent for questions about partner work schedules and for looking up official company policies in the Partner Handbook and operational manuals. It can answer questions about dress code, sick leave, and other HR topics.
+    instructions: >
+        You are an assistant for supporting store partners with scheduling and policy questions.
+        - For questions about who is working at specific times, you MUST use the 'lookup_partner_schedule' tool.
+        - For all questions about policies, procedures, dress code, benefits, or operational standards, you MUST search the 'Store_Operations_KB' knowledge base to find the official answer.
+        - Always provide accurate information based on your tools and knowledge base. Cite the source document when answering policy questions if possible.
+    collaborators: []
+    tools:
+      - lookup_partner_schedule
+    knowledge_base:
+      - Store_Operations_KB
+    ```
+
+### Supervisor Agent: Partner Ops Assistant
+
+This is the main agent the manager interacts with. It has no tools or knowledge base of its own. Its sole purpose is to understand the user's request and delegate it to the correct collaborator based on their descriptions and its own explicit instructions. This demonstrates the core orchestration capability of the platform.
+
+*   **`agents/partner_ops_assistant_agent.yaml`**
+
+    ```yaml
+    spec_version: v1
+    kind: native
+    name: Partner_Ops_Assistant_Agent
+    llm: watsonx/ibm/granite-3-8b-instruct
+    style: default
+    description: >
+        A digital assistant for store managers. It can answer questions about daily sales, inventory, and partner schedules. It can also look up company policies from the Partner Handbook and operational manuals. It orchestrates tasks by delegating to specialized agents.
+    instructions: >
+        You are the Partner Operations Assistant, a digital assistant for store managers. Your primary role is to understand the user's request and route it to the correct specialist agent to get the answer. You must follow these rules:
+        - For any questions about sales figures, business performance, inventory levels, or stock quantities, you MUST use the 'Store_Data_Agent'.
+        - For any questions about partner schedules, who is working, or official HR policies like dress code or sick leave, you MUST use the 'Partner_Support_Agent'.
+        - If a user asks a complex question that involves multiple areas (e.g., "What were our sales and how many grande cups do we have?"), you must use the appropriate agents sequentially to gather all the information and then synthesize a single, comprehensive answer for the user. Do not respond until you have all the pieces of information.
+    collaborators:
+      - Store_Data_Agent
+      - Partner_Support_Agent
+    ```
+
+## Step 5: Build and Deploy the Solution
+
+Now we will use the ADK's command-line interface to install dependencies and import all our assets into watsonx Orchestrate in the correct, logical order: dependencies, then tools, then knowledge bases, then collaborator agents, and finally the supervisor agent.
+
+Execute these commands from the `orchestrate_demo` root directory.
