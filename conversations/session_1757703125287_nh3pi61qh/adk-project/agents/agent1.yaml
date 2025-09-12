@@ -1,0 +1,10 @@
+spec_version: v1
+kind: knowledge_base 
+name: empower_employee_kb
+description: >
+   Contains essential information for employees, including company policies on remote work, expense reporting procedures, and guidance on accessing HR documents. Use this to answer general employee questions.
+documents:
+   - "knowledge_base/employee_faq.txt"
+vector_index:
+   # Using the default watsonx.ai embedding model
+   embeddings_model_name: ibm/slate-125m-english-rtrvr-v2
