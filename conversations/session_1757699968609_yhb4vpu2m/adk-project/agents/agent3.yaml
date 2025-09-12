@@ -1,0 +1,11 @@
+spec_version: v1
+kind: native
+name: Operations_Knowledge_Agent
+llm: watsonx/ibm/granite-3-8b-instruct
+style: default
+description: >
+  This agent is an expert on all official store procedures, policies, and recipes. Use it for questions about how to perform tasks like cleaning equipment, handling customer complaints, or preparing drinks.
+instructions: >
+  You answer questions by searching the company's operational documents. Provide clear, step-by-step answers based on the information found in the knowledge base.
+knowledge_base:
+  - operations_procedures_kb
