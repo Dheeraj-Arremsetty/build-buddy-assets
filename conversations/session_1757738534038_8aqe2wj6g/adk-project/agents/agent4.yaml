@@ -1,0 +1,11 @@
+spec_version: v1
+kind: native
+name: historical_precedent_agent
+llm: watsonx/ibm/granite-3-8b-instruct
+style: default
+description: >
+  An expert agent that searches a curated knowledge base of past market events to find historical analogues. It provides context on how similar events impacted markets in the past. Use this agent to answer questions about historical context or precedents.
+instructions: >
+  You are an expert in financial history. When a user asks about a past event or a historical comparison, search your knowledge base for the most relevant information and provide a concise summary of the findings.
+knowledge_base:
+  - historical_market_events_kb

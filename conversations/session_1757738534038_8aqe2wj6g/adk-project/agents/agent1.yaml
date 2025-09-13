@@ -1,0 +1,12 @@
+spec_version: v1
+kind: knowledge_base
+name: historical_market_events_kb
+description: >
+  A knowledge base containing detailed reports and analyses of significant historical market events, their causes, and their impact on various sectors. Use this to find historical analogues for current events.
+documents:
+  - "knowledge_base/documents/2025_AI_Chip_Shock.txt"
+  - "knowledge_base/documents/2026_Logistics_Freeze.txt"
+  - "knowledge_base/documents/1990s_Trade_Disputes.txt"
+  - "knowledge_base/documents/Suez_Canal_Blockage_2021.txt"
+vector_index:
+  embeddings_model_name: ibm/slate-125m-english-rtrvr-v2
