@@ -1,0 +1,10 @@
+spec_version: v1
+kind: knowledge_base
+name: market_news_kb
+description: >
+  A knowledge base containing recent news articles, press releases, and market analysis for major public companies. Used to assess qualitative risk and market sentiment.
+documents:
+  - "mock_data/news/innovatech_product_launch.txt"
+  - "mock_data/news/globallogistics_disruption.txt"
+vector_index:
+  embeddings_model_name: ibm/slate-125m-english-rtrvr-v2
