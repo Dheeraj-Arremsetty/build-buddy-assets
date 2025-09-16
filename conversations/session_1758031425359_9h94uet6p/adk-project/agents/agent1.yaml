@@ -1,0 +1,10 @@
+spec_version: v1
+kind: knowledge_base 
+name: empower_company_policies_kb
+description: >
+   Contains comprehensive information about company policies, employee benefits, IT procedures, and frequently asked questions (FAQs). Use this to answer general employee inquiries about internal processes.
+documents:
+   - "knowledge_docs/employee_faq.txt"
+vector_index:
+   # Using the default watsonx.ai embedding model
+   embeddings_model_name: ibm/slate-125m-english-rtrvr-v2
