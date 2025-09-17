@@ -1,0 +1,41 @@
+# agents/recipe_expert_agent.yaml
+    spec_version: v1
+    kind: native
+    name: Recipe_Expert_Agent
+    llm: watsonx/ibm/granite-3-8b-instruct
+    style: default
+    description: >
+      A specialist agent with deep knowledge of all company recipes. It can retrieve specific ingredient lists, preparation steps, and cooking instructions. It can also convert kitchen measurements.
+    instructions: >
+      You are an expert culinary assistant. Your primary goal is to answer questions about recipes using the information in your knowledge base. If asked to convert units, use the unit_converter_tool. Be precise and clear in your responses.
+    tools:
+      - unit_converter_tool
+    knowledge_base:
+      - recipe_knowledge_base
+    ```
+
+2.  **Policy & Procedures Agent**
+    *   **File**: `agents/policy_procedures_agent.yaml`
+    *   **Explanation**: This agent is the authority on company operations. Its description highlights its expertise in policies, safety, and procedures. Its instructions direct it to rely on the `policy_knowledge_base` to provide accurate and compliant answers. It has no custom tools, as its function is purely RAG-based.
+
+    ```yaml
+    # agents/policy_procedures_agent.yaml
+    spec_version: v1
+    kind: native
+    name: Policy_Procedures_Agent
+    llm: watsonx/ibm/granite-3-8b-instruct
+    style: default
+    description: >
+      An expert on all company policies and operational procedures, including food safety, HR guidelines, and end-of-day closing tasks. It provides official, documented answers.
+    instructions: >
+      You are a policy and procedures expert. You must answer user questions strictly based on the content within your knowledge base. Do not invent information. If the answer is not in the documents, state that you cannot find the information.
+    knowledge_base:
+      - policy_knowledge_base
+    ```
+
+## Step 5: Define the Supervisor Agent
+
+The supervisor agent is the orchestrator of the entire system. It doesn't answer questions directly but routes them to the correct specialist.
+
+*   **File**: `agents/supervisor_agent.yaml`
+*   **Explanation**: This is the top-level agent that the user interacts with. Its description clearly defines its role as an onboarding assistant. The `collaborators` section lists the two specialist agents it can delegate tasks to. The `instructions` are the most critical part: they provide the reasoning logic for routing. By explicitly stating "If it is about a recipe, use the Recipe_Expert_Agent" and "If it is about policies... use the Policy_Procedures_Agent", we are programming its decision-making process.
