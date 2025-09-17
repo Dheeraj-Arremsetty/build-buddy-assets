@@ -1,0 +1,12 @@
+spec_version: v1
+kind: knowledge_base
+name: Xerox_Service_Catalog
+description: >
+   Contains detailed descriptions, features, pricing, and standard terms for all Xerox services-led offerings, including Managed Print Services, IT Outsourcing, and Digital Transformation.
+documents:
+   - "./mock_docs/Managed_Print_Services.pdf"
+   - "./mock_docs/IT_Outsourcing_Solutions.txt"
+   - "./mock_docs/Digital_Transformation_Services.txt"
+vector_index:
+   # Uses the default, powerful embedding model provided by watsonx Orchestrate
+   embeddings_model_name: ibm/slate-125m-english-rtrvr-v2
