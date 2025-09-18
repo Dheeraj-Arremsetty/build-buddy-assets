@@ -2,49 +2,57 @@
 # Generated deployment script
 
 # Script block 1
-pip install "ibm-watsonx-orchestrate[all]"
+pip install "ibm-watsonx-orchestrate"
     ```
-*   **Orchestrate Environment:** You must have an active watsonx Orchestrate environment configured. Initialize it if you haven't already:
-    ```bash
-    orchestrate setup
-    ```
-*   **Python Libraries:** The custom tools will require the `pandas` library for data manipulation. It will be listed in a `requirements.txt` file.
-*   **Text Editor:** A text editor like Visual Studio Code is recommended for creating and editing Python and YAML files.
+3.  **watsonx Orchestrate Environment**: You must have an active IBM watsonx Orchestrate environment initialized and configured with the ADK. Ensure you have logged in and set the target environment.
+4.  **Required Python Packages**: The tools in this plan require external Python libraries. You will create a `requirements.txt` file and install them to ensure the tools function correctly.
+5.  **Text Editor**: A code editor such as Visual Studio Code is highly recommended for creating and editing the Python and YAML files required for this project.
 
-## 3. Project Structure Setup
+## Step 1: Prepare the Project Structure and Mock Data
 
-To maintain clarity and organization, create the following directory structure for the project. This structure separates agents, tools, data, and knowledge base assets, making the project easy to manage and scale.
+A well-organized project structure is essential for managing the different components of the solution and ensuring scalability.
+
+### 1.1. Create the Directory Structure
+
+Create the following folder structure in your development environment. This separates agents, tools, knowledge bases, and data, making the project easy to navigate and maintain.
 
 # Script block 2
-# Import the dataset locator tool
-    orchestrate tools import -f ./tools/dataset_locator_tools.py
+pip install -r requirements.txt
 
-    # Import the data validator tool
-    orchestrate tools import -f ./tools/data_validator_tools.py -r ./requirements.txt
+# Script block 3
+cd path/to/data_steward_demo
     ```
 
-2.  **Import the Knowledge Base:**
+2.  **Import All Tools**: Import the Python tools first, as the agents depend on them.
     ```bash
-    orchestrate knowledge-bases import -f ./knowledge_base/ValidationRulesKB.yaml
+    orchestrate tools import -f tools/ingestion_tools.py
+    orchestrate tools import -f tools/validation_tools.py
+    orchestrate tools import -f tools/reporting_tools.py
     ```
 
-3.  **Import the Collaborator Agents:**
+3.  **Import the Knowledge Base**: Deploy the knowledge base so it can begin ingesting the document.
     ```bash
-    # Import the locator agent
-    orchestrate agents import -f ./agents/DatasetLocatorAgent.yaml
-
-    # Import the validator agent
-    orchestrate agents import -f ./agents/DataValidatorAgent.yaml
+    orchestrate knowledge-bases import -f knowledge_bases/data_quality_kb.yaml
     ```
+    You can check its status with `orchestrate knowledge-bases status --name data_quality_kb`. Wait for it to be `Ready`.
 
-4.  **Import the Supervisor Agent:**
+4.  **Import the Collaborator Agents**: Import the specialized agents.
     ```bash
-    orchestrate agents import -f ./agents/ValidationSupervisorAgent.yaml
+    orchestrate agents import -f agents/data_ingestion_agent.yaml
+    orchestrate agents import -f agents/data_validation_agent.yaml
+    orchestrate agents import -f agents/reporting_agent.yaml
     ```
 
-## 5. Verification and Demo Scenarios
+5.  **Import the Supervisor Agent**: Finally, import the supervisor agent, which depends on all other components.
+    ```bash
+    orchestrate agents import -f agents/data_steward_supervisor.yaml
+    ```
 
-After successfully importing all assets, you can start an interactive chat session to test the demo scenarios.
+## Step 6: Verification and Demo Scenarios
 
-**Start the Chat:**
+After successful deployment, you can interact with your multi-agent system.
+
+### 6.1. Start the Chat
+
+Launch the interactive chat interface, specifying the `data_steward_supervisor` as the entry point.
 

@@ -1,0 +1,15 @@
+spec_version: v1
+kind: native
+name: data_validation_agent
+llm: watsonx/ibm/granite-3-8b-instruct
+style: default
+description: >
+    An expert data validation agent. It applies data quality rules to datasets. Its capabilities include checking for missing values, validating formats for emails and phone numbers, and verifying data against business rules defined in its knowledge base.
+instructions: >
+    You are a data quality specialist. Use your tools to validate datasets provided to you. For simple checks like missing data, use the check_missing_values tool. For complex validations against corporate standards, you MUST consult your knowledge base to understand the required rules, then use the verify_against_rules tool to find records that violate them.
+tools:
+  - check_missing_values
+  - validate_phone_number_format
+  - verify_against_rules
+knowledge_base:
+  - data_quality_kb

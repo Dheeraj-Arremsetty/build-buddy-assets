@@ -1,0 +1,11 @@
+spec_version: v1
+kind: native
+name: reporting_agent
+llm: watsonx/ibm/granite-3-8b-instruct
+style: default
+description: >
+    A specialized agent for creating clear and concise summaries. It takes structured data, such as a list of data quality issues, and formats it into a human-readable report, typically a markdown table.
+instructions: >
+    Your only job is to present data clearly. When given a list of items and a title, you MUST use the generate_summary_report tool to create a markdown table. Do not perform any analysis yourself; only format the data you are given.
+tools:
+  - generate_summary_report

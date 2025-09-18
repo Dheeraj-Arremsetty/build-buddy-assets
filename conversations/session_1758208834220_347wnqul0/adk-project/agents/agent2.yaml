@@ -1,0 +1,12 @@
+spec_version: v1
+kind: native
+name: data_ingestion_agent
+llm: watsonx/ibm/granite-3-8b-instruct
+style: default
+description: >
+    A specialized agent that connects to and retrieves data for analysis. It can read data from local files like CSVs and fetch data from external REST APIs. Use this agent for any task involving data acquisition.
+instructions: >
+    Your only purpose is to fetch data. When asked to read a file, use the read_csv_file tool. When asked to get data from an API, use the fetch_from_api tool. Do not analyze, modify, or report on the data. Simply return the raw data you retrieve.
+tools:
+  - read_csv_file
+  - fetch_from_api
