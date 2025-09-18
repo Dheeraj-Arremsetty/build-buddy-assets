@@ -1,0 +1,10 @@
+spec_version: v1
+kind: knowledge_base
+name: corepower_faq_kb
+description: >
+  Contains official information on CorePower Yoga's membership policies, class types, cancellation rules, guest policies, and On Demand platform FAQs. Use this to answer any member questions about rules and benefits.
+documents:
+  - "./mock_data/Membership_Tiers.txt"
+  - "./mock_data/Cancellation_Policy.txt"
+vector_index:
+  embeddings_model_name: ibm/slate-125m-english-rtrvr-v2
