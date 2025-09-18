@@ -1,0 +1,10 @@
+spec_version: v1
+kind: knowledge_base
+name: barista_handbook_kb
+description: >
+   Contains official Starbucks recipes for popular drinks, standard store procedures for cleaning equipment, and operational guidelines for baristas. Use this to answer any 'how-to' questions related to a barista's daily tasks.
+documents:
+   - "knowledge_base/documents/Starbucks_Recipe_Guide.pdf"
+vector_index:
+   # Using the default watsonx.ai embedding model for simplicity and performance.
+   embeddings_model_name: ibm/slate-125m-english-rtrvr-v2
