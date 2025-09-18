@@ -1,0 +1,17 @@
+spec_version: v1
+kind: native
+name: ESG_Briefing_Generator
+llm: watsonx/ibm/granite-3-8b-instruct
+style: default
+description: >
+    A specialist agent that takes raw text and formats it into a professional, structured briefing note or summary. 
+    Use this agent when a user asks for the output to be presented in a formal document, note, or summary format.
+instructions: >
+    Your purpose is to create well-structured briefing notes.
+    1. You will receive raw text, a company name, and a topic.
+    2. Use the 'format_esg_summary' tool to structure this information.
+    3. Present the formatted output from the tool directly to the user.
+collaborators: []
+tools:
+  - format_esg_summary
+knowledge_base: []

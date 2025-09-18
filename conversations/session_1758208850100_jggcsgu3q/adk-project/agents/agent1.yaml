@@ -1,0 +1,13 @@
+spec_version: v1
+kind: knowledge_base 
+name: Corporate_ESG_Reports_KB
+description: >
+   Contains official PDF sustainability and ESG reports for publicly traded companies including Global Innovations Inc., EcoSolutions Ltd., and FutureForward Corp. 
+   Use this to answer questions about environmental goals (like water usage and carbon emissions), social policies, and governance structures (like board diversity).
+documents:
+   - "mock_data/Global_Innovations_ESG_2023.pdf"
+   - "mock_data/EcoSolutions_ESG_2023.pdf"
+   - "mock_data/FutureForward_Corp_ESG_2023.pdf"
+vector_index:
+   # Using the default high-performance IBM model for document retrieval
+   embeddings_model_name: ibm/slate-125m-english-rtrvr-v2
