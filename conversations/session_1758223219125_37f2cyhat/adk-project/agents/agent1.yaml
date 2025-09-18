@@ -1,0 +1,13 @@
+spec_version: v1
+kind: knowledge_base
+name: barista_recipe_knowledge_base
+description: >
+  Contains all official company recipes for hot and cold beverages, 
+  as well as standard operating procedures for equipment cleaning and maintenance. 
+  This is the primary source of truth for how to make drinks and perform daily tasks.
+documents:
+  - "mock_data/recipes/caramel_macchiato.pdf"
+  - "mock_data/recipes/cold_brew_process.pdf"
+  - "mock_data/procedures/espresso_machine_cleaning.pdf"
+vector_index:
+  embeddings_model_name: ibm/slate-125m-english-rtrvr-v2
