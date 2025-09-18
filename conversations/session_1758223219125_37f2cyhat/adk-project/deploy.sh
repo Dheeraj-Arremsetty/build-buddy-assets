@@ -2,33 +2,24 @@
 # Generated deployment script
 
 # Script block 1
-pip install "ibm-watsonx-orchestrate"
+pip install --upgrade "ibm-watsonx-orchestrate[all]"
 
 # Script block 2
-# Example for initializing a new environment and activating it
-    orchestrate env add
-    orchestrate env activate <your_env_name>
+orchestrate knowledge-bases import -f ./knowledge_base/company_recipe_book_kb.yaml
 
 # Script block 3
-mkdir barista-buddy-demo
-    cd barista-buddy-demo
-    mkdir -p mock_data/recipes
-    mkdir -p mock_data/procedures
-    touch requirements.txt
+orchestrate tools import -f ./tools/store_procedures_tool.py
 
 # Script block 4
-orchestrate tools import -f operations_tools.py
+# 1. Import the Recipe Expert collaborator
+orchestrate agents import -f ./agents/Recipe_Expert_Agent.yaml
+
+# 2. Import the Store Ops collaborator
+orchestrate agents import -f ./agents/Store_Ops_Agent.yaml
+
+# 3. Import the Supervisor agent
+orchestrate agents import -f ./agents/Barista_Concierge_Agent.yaml
 
 # Script block 5
-orchestrate knowledgebases import -f recipe_kb.yaml
-
-# Script block 6
-orchestrate agents import -f recipe_expert_agent.yaml
-    orchestrate agents import -f operations_support_agent.yaml
-
-# Script block 7
-orchestrate agents import -f barista_buddy_assistant.yaml
-
-# Script block 8
-orchestrate chat start
+orchestrate chat start --agent Barista_Concierge_Agent
 
