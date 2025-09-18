@@ -1,0 +1,10 @@
+spec_version: v1
+kind: knowledge_base
+name: industry_reports_kb
+description: >
+  Contains analyst reports, market outlooks, and best practice guides for the technology and financial sectors. Used to answer qualitative questions about industry benchmarks, definitions, and trends.
+documents:
+  - "knowledge_base/documents/Tech_Sector_Outlook_2024.pdf"
+  - "knowledge_base/documents/Financial_Ratio_Best_Practices.txt"
+vector_index:
+  embeddings_model_name: ibm/slate-125m-english-rtrvr-v2
