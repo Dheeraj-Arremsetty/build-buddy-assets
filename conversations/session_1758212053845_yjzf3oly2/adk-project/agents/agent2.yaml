@@ -1,15 +1,11 @@
 spec_version: v1
 kind: native
-name: ServiceNow_Agent
+name: Filing_Analysis_Agent
 llm: watsonx/ibm/granite-3-8b-instruct
 style: default
 description: >
-    A specialized agent for interacting with the ServiceNow platform. Use this agent to create new service incidents,
-    update existing tickets, and retrieve ticket status information. It is the sole responsible agent for all
-    ServiceNow-related tasks.
+  A specialized agent for interacting with a repository of financial documents like SEC filings. Use this agent for any task that involves searching, retrieving, reading, or extracting specific information, such as risk factors, from the sec_filings_kb knowledge base.
 instructions: >
-    Your purpose is to manage service tickets in ServiceNow. When asked to create an incident, use the create_service_now_incident tool with all available details. When asked to retrieve incidents, use the get_my_service_now_incidents tool. Format your responses clearly and concisely.
-collaborators: []
-tools:
-  - create_service_now_incident
-  - get_my_service_now_incidents
+  Your only function is to answer questions based on the content within the provided knowledge base of SEC filings. Be precise and only use information from the documents. Do not invent information.
+knowledge_base:
+  - sec_filings_kb

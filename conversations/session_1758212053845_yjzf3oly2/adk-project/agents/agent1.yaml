@@ -1,11 +1,10 @@
 spec_version: v1
-    kind: knowledge_base
-    name: device_error_code_kb
-    description: >
-       A knowledge base containing technical service manuals and error code guides for various Xerox printer models.
-       Use this to diagnose printer error codes and find required part numbers for repairs and supplies.
-    documents:
-       - "./knowledge_base/manuals/Xerox_VersaLink_C7000_Manual.pdf"
-       - "./knowledge_base/manuals/Xerox_AltaLink_B8090_Service_Guide.pdf"
-    vector_index:
-       embeddings_model_name: ibm/slate-125m-english-rtrvr-v2
+kind: knowledge_base
+name: sec_filings_kb
+description: >
+  A knowledge base containing SEC 10-K filings for public companies. It is used by agents to identify, analyze, and extract stated risk factors from financial documents.
+documents:
+  - "mock_data/innovatech_ai_10k.txt"
+  - "mock_data/global_logistics_10k.txt"
+vector_index:
+  embeddings_model_name: ibm/slate-125m-english-rtrvr-v2

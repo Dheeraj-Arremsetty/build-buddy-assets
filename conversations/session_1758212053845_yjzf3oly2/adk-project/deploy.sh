@@ -5,21 +5,21 @@
 pip install ibm-watsonx-orchestrate
 
 # Script block 2
-orchestrate knowledgebases import -f knowledge_base/device_error_code_kb.yaml
+orchestrate env init
 
 # Script block 3
-orchestrate tools import -k python -f tools/servicenow_tools.py
-orchestrate tools import -k python -f tools/supply_chain_tools.py
-orchestrate tools import -k python -f tools/device_monitor_tool.py
+orchestrate tools import -k python -f tools/reporting_tools.py
 
 # Script block 4
-# Import collaborator agents
-orchestrate agents import -f agents/ServiceNow_Agent.yaml
-orchestrate agents import -f agents/Supply_Chain_Agent.yaml
-
-# Import the main supervisor agent
-orchestrate agents import -f agents/MPS_Fleet_Monitor.yaml
+orchestrate knowledge_bases import -f knowledge_base/sec_filings_kb.yaml
 
 # Script block 5
+orchestrate agents import -f agents/Filing_Analysis_Agent.yaml
+    orchestrate agents import -f agents/Risk_Reporting_Agent.yaml
+
+# Script block 6
+orchestrate agents import -f agents/SEC_Risk_Orchestrator_Agent.yaml
+
+# Script block 7
 orchestrate chat start
 
