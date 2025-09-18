@@ -1,0 +1,10 @@
+spec_version: v1
+kind: knowledge_base
+name: semiconductor_industry_kb
+description: >
+  Contains expert reports and analysis on the global semiconductor industry, including market trends, key players, and common risk factors like supply chain vulnerabilities and geopolitical tensions.
+documents:
+  - "mock_data/Gartner_Semiconductor_Outlook_2024.pdf"
+  - "mock_data/Industry_Analysis_Supply_Chain.pdf"
+vector_index:
+  embeddings_model_name: ibm/slate-125m-english-rtrvr-v2

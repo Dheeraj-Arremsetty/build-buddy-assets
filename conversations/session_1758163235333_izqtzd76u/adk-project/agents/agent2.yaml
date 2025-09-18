@@ -1,0 +1,82 @@
+openapi: 3.0.0
+info:
+  title: Mock S&P Internal Risk API
+  version: 1.0.0
+  description: API for linking extracted entities to internal S&P risk profiles and financial models.
+servers:
+  - url: https://mock-internal-api.client.com/v1 # This URL is a placeholder
+paths:
+  /risk-profile:
+    get:
+      operationId: get_company_risk_profile
+      summary: Retrieves the internal risk profile for a company and specific risk type.
+      description: Connects to the proprietary S&P risk database to get pre-calculated scores and commentary.
+      parameters:
+        - name: company_ticker
+          in: query
+          required: true
+          schema:
+            type: string
+          description: The company's stock ticker.
+        - name: risk_type
+          in: query
+          required: true
+          schema:
+            type: string
+            enum: [SUPPLY_CHAIN, GEOPOLITICAL, MARGIN_PRESSURE]
+          description: The category of risk to query.
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  risk_score:
+                    type: number
+                    format: float
+                  commentary:
+                    type: string
+                  last_updated:
+                    type: string
+                    format: date
+              example:
+                risk_score: 7.8
+                commentary: "High dependency on single-source suppliers in Southeast Asia."
+                last_updated: "2024-08-01"
+  /model-link:
+    post:
+      operationId: link_to_internal_model_score
+      summary: Links a key topic to an internal financial model score.
+      description: Associates an extracted topic with a relevant internal model for further analysis.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                company_ticker:
+                  type: string
+                topic:
+                  type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  model_id:
+                    type: string
+                  relevance_score:
+                    type: number
+                    format: float
+                  status:
+                    type: string
+              example:
+                model_id: "QCI_Margin_Forecast_v3.2"
+                relevance_score: 0.92
+                status: "LINK_SUCCESSFUL"
