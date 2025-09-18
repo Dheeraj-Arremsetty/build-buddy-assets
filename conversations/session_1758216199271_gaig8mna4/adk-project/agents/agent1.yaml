@@ -1,0 +1,10 @@
+spec_version: v1
+kind: knowledge_base
+name: InternalAnalystBriefs
+description: >
+   Contains proprietary internal research and analysis briefings on major market events and companies. This knowledge base is the authoritative source for our in-house analyst team's opinions, strategic outlooks, and risk assessments. Use this to answer questions about our "internal take" or "our opinion".
+documents:
+   - "documents/Internal_Analysis_NVDA_Q4.pdf"
+vector_index:
+   # Using the default watsonx.ai embedding model
+   embeddings_model_name: ibm/slate-125m-english-rtrvr-v2
