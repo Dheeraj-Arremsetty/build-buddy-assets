@@ -1,0 +1,10 @@
+spec_version: v1
+kind: knowledge_base
+name: Corporate_Policy_KB
+description: >
+  Contains official Starbucks corporate policies for store operations, including scheduling rules from the Partner Guide, inventory management best practices, and promotional guidelines. Use this to answer specific questions about official procedures.
+documents:
+   - "knowledge_docs/Partner_Scheduling_Policy.pdf"
+   - "knowledge_docs/Inventory_Ordering_Guide.pdf"
+vector_index:
+   embeddings_model_name: ibm/slate-125m-english-rtrvr-v2
