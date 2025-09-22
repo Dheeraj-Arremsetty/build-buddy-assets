@@ -1,0 +1,10 @@
+spec_version: v1
+        kind: knowledge_base
+        name: IT_SOP_KnowledgeBase
+        description: >
+          Contains standard operating procedures and troubleshooting guides for common IT issues like VPN connectivity, application errors, and system performance problems. This is the first resource to consult for self-service solutions before creating a support ticket.
+        documents:
+          - "knowledge_base/documents/vpn_troubleshooting.pdf"
+          - "knowledge_base/documents/app_cache_clearing.txt"
+        vector_index:
+          embeddings_model_name: ibm/slate-125m-english-rtrvr-v2
