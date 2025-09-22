@@ -1,0 +1,13 @@
+# /knowledge_base/company_knowledge_base.yaml
+spec_version: v1
+kind: knowledge_base
+name: company_knowledge_base
+description: >
+  Contains internal company documents including IT policies, employee handbooks,
+  and technical setup guides for employee questions.
+documents:
+  - "./mock_docs/Employee_Onboarding_Guide.txt"
+  - "./mock_docs/IT_Security_Policies.txt"
+  - "./mock_docs/VPN_Setup_Instructions.txt"
+vector_index:
+  embeddings_model_name: ibm/slate-125m-english-rtrvr-v2
