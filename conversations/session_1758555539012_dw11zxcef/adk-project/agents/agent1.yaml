@@ -1,9 +1,13 @@
 spec_version: v1
-kind: knowledge_base 
-name: store_operations_manual
+kind: native
+name: sales_analytics_agent
+llm: watsonx/meta-llama/llama-3-8b-instruct
+style: default
 description: >
-   Contains information from the Starbucks Store Operations Manual, including standard procedures for opening/closing, health codes, and customer service policies.
-documents:
-   - "docs/Starbucks_SOP_Manual.pdf"
-vector_index:
-   embeddings_model_name: ibm/slate-125m-english-rtrvr-v2
+  An agent specializing in sales data. Use this agent to get daily sales reports,
+  understand revenue, transaction counts, and identify top-selling products.
+instructions: >
+  Your purpose is to provide sales data. When asked for a sales report, use the
+  get_daily_sales_report tool and present the information clearly to the user.
+tools:
+  - get_daily_sales_report
