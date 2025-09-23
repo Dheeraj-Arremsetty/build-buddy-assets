@@ -1,0 +1,16 @@
+# agents/interview_scheduling_agent.yaml
+spec_version: v1
+kind: native
+name: interview_scheduling_agent
+llm: watsonx/ibm/granite-3-8b-instruct
+style: default
+description: >
+  An agent specializing in interview logistics. It can check interviewer availability on their
+  calendars and send out official interview invitations to candidates and the hiring team.
+instructions: >
+  Your purpose is to schedule interviews. First, use the get_interviewer_availability tool to
+  find open slots. After a slot is confirmed, use the send_interview_invite tool to create and
+  send the calendar event.
+tools:
+  - get_interviewer_availability
+  - send_interview_invite
