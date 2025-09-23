@@ -1,0 +1,40 @@
+openapi: 3.0.0
+info:
+  title: Mock Translation API
+  version: 1.0.0
+  description: API for translating text between languages.
+servers:
+  - url: https://mock-translation-service.com/api # This is a placeholder and will not be called.
+paths:
+  /translate:
+    post:
+      operationId: translate_text
+      summary: Translates text to a target language.
+      description: Provides multilingual translation capabilities. Takes text and a target language as input and returns the translated content.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                text:
+                  type: string
+                  description: The text to be translated.
+                target_language:
+                  type: string
+                  description: The target language (e.g., 'Spanish', 'French').
+              required:
+                - text
+                - target_language
+      responses:
+        '200':
+          description: Successful translation
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  translated_text:
+                    type: string
+                    example: "Este es un texto traducido."
