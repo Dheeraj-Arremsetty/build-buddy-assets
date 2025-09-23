@@ -6,7 +6,7 @@ This project was automatically generated from a demo plan.
 
 - **Python Tools**: 1 files
 - **YAML Agents**: 0 files
-- **Deployment Scripts**: 3 files
+- **Deployment Scripts**: 4 files
 
 ## Project Structure
 
@@ -28,4 +28,4 @@ adk-project/
 
 ## Source
 
-Generated from: `watsonx_orchestrate_plan_20250923_114551_Generate_a_comprehensive_IBM_watsonx_Orchestrate_d.md`
+Generated from: `watsonx_orchestrate_plan_20250923_125646_Generate_a_comprehensive_IBM_watsonx_Orchestrate_d.md`

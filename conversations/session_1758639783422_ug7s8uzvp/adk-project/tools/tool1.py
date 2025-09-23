@@ -1,60 +1,71 @@
+# tools/collection_tools.py
 import json
 import random
 from datetime import datetime, timedelta
-from uuid import uuid4
 from ibm_watsonx_orchestrate.agent_builder.tools import tool, ToolPermission
 
-@tool(name="fetch_trade_data", description="Fetches raw trade data for a specific batch ID from the primary trading system.", permission=ToolPermission.ADMIN)
-def fetch_trade_data(trade_batch_id: str) -> str:
+@tool(name="get_erp_sales_data", description="Fetches raw sales transaction data from the ERP system for a given quarter.")
+def get_erp_sales_data(quarter: str) -> str:
     """
-    Simulates fetching a batch of raw trade data from a core trading system based on a batch ID.
+    Simulates fetching raw sales transaction data from an ERP system.
 
     Args:
-        trade_batch_id (str): The unique identifier for the trade batch to be processed.
+        quarter (str): The financial quarter to fetch data for (e.g., 'Q3 2024').
 
     Returns:
-        str: A JSON string representing a list of trade records. Each record includes details like trade ID, ticker, quantity, price, and trade date.
+        str: A JSON string representing a list of sales transactions.
     """
-    try:
-        trades = []
-        tickers = ["IBM", "AAPL", "GOOGL", "MSFT", "AMZN"]
-        for _ in range(random.randint(3, 7)):
-            trade_date = datetime.now() - timedelta(days=random.randint(1, 3))
-            trades.append({
-                "trade_id": f"T{random.randint(10000, 99999)}",
-                "trade_batch_id": trade_batch_id,
-                "ticker": random.choice(tickers),
-                "quantity": random.randint(100, 5000),
-                "price": round(random.uniform(150.0, 500.0), 2),
-                "trade_type": random.choice(["BUY", "SELL"]),
-                "trade_date": trade_date.isoformat(),
-                "counterparty_id": f"CP{random.randint(101, 105)}",
-                "status": "PENDING_SETTLEMENT"
-            })
-        return json.dumps({"status": "success", "data": trades, "record_count": len(trades)})
-    except Exception as e:
-        return json.dumps({"status": "error", "message": str(e)})
+    transactions = []
+    for i in range(20):  # Generate 20 sample transactions
+        transactions.append({
+            "transaction_id": f"ERP-SALE-{1000 + i}",
+            "date": (datetime.now() - timedelta(days=random.randint(1, 90))).strftime('%Y-%m-%d'),
+            "product_id": f"PROD-{random.choice(['A', 'B', 'C'])}{random.randint(100, 199)}",
+            "amount": round(random.uniform(500.0, 10000.0), 2),
+            "region": random.choice(["NA", "EMEA", "APAC"]),
+            "status": "Completed"
+        })
+    return json.dumps(transactions)
 
-@tool(name="get_counterparty_details", description="Retrieves detailed information for a list of counterparty IDs.", permission=ToolPermission.ADMIN)
-def get_counterparty_details(counterparty_ids: list[str]) -> str:
+@tool(name="get_crm_pipeline_data", description="Retrieves sales pipeline and opportunity data from the CRM system.")
+def get_crm_pipeline_data(quarter: str) -> str:
     """
-    Simulates fetching detailed information for a list of counterparties from a master database.
+    Simulates retrieving sales pipeline data from a CRM system.
 
     Args:
-        counterparty_ids (list[str]): A list of unique counterparty identifiers.
+        quarter (str): The financial quarter for the pipeline data (e.g., 'Q3 2024').
 
     Returns:
-        str: A JSON string containing details for each counterparty, including name, region, and credit rating.
+        str: A JSON string representing a list of sales opportunities.
     """
-    try:
-        counterparties = {
-            "CP101": {"name": "Global Investment Bank", "region": "NA", "credit_rating": "AA-"},
-            "CP102": {"name": "European Securities", "region": "EMEA", "credit_rating": "A+"},
-            "CP103": {"name": "APAC Trading Co.", "region": "APAC", "credit_rating": "A"},
-            "CP104": {"name": "Americas Capital", "region": "NA", "credit_rating": "BBB+"},
-            "CP105": {"name": "Union Finance Group", "region": "EMEA", "credit_rating": "A-"}
-        }
-        results = {cp_id: counterparties.get(cp_id, {"error": "Not Found"}) for cp_id in counterparty_ids}
-        return json.dumps({"status": "success", "data": results})
-    except Exception as e:
-        return json.dumps({"status": "error", "message": str(e)})
+    opportunities = []
+    for i in range(15): # Generate 15 sample opportunities
+        opportunities.append({
+            "opportunity_id": f"CRM-OPP-{2000 + i}",
+            "stage": random.choice(["Prospecting", "Qualification", "Proposal", "Closed-Won"]),
+            "forecast_value": round(random.uniform(20000.0, 150000.0), 2),
+            "close_probability": round(random.random(), 2),
+            "account_name": f"Client Corp {i+1}"
+        })
+    return json.dumps(opportunities)
+
+@tool(name="get_treasury_expense_data", description="Gathers operational expense data from the Treasury management system.")
+def get_treasury_expense_data(quarter: str) -> str:
+    """
+    Simulates fetching operational expense data from a Treasury system.
+
+    Args:
+        quarter (str): The financial quarter for the expense data (e.g., 'Q3 2024').
+
+    Returns:
+        str: A JSON string representing a list of expenses.
+    """
+    expenses = []
+    for i in range(18): # Generate 18 sample expenses
+        expenses.append({
+            "expense_id": f"TRSY-EXP-{3000 + i}",
+            "date": (datetime.now() - timedelta(days=random.randint(1, 90))).strftime('%Y-%m-%d'),
+            "category": random.choice(["Salaries", "Marketing", "R&D", "Office Supplies"]),
+            "amount": round(random.uniform(1000.0, 75000.0), 2)
+        })
+    return json.dumps(expenses)
