@@ -1,0 +1,10 @@
+spec_version: v1
+kind: knowledge_base
+name: network_troubleshooting_kb
+description: >
+  Contains technical guides, standard operating procedures, and FAQs for solving common employee network connectivity issues. This includes problems with office Wi-Fi, corporate VPN access, and general internet connectivity.
+documents:
+  - "knowledge_docs/wifi_setup.txt"
+  - "knowledge_docs/vpn_guide.txt"
+vector_index:
+  embeddings_model_name: ibm/slate-125m-english-rtrvr-v2
