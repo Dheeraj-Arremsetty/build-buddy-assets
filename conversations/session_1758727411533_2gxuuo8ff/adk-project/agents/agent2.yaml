@@ -1,10 +1,9 @@
 spec_version: v1
-kind: knowledge_base 
-name: Flight_Operations_KB
+kind: knowledge_base
+name: flight_operations_kb
 description: >
-   Contains flight operating manuals (FCOM), emergency procedures, and safety checklists for the Airbus A321. Used by the Flight Crew Agent for pre-flight and in-flight procedure verification.
+    Contains the Crew Operating Handbook (COH) with standard operating procedures (SOPs), checklists, and non-normal procedures like go-arounds. Use this for questions from pilots and flight crew related to in-flight operations and regulations.
 documents:
-   - "mock_data/A321_FCOM.pdf"
-   - "mock_data/Safety_Compliance_Regs.txt"
+   - "./mock_data/Crew_Operating_Handbook.txt"
 vector_index:
    embeddings_model_name: ibm/slate-125m-english-rtrvr-v2

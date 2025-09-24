@@ -1,11 +1,9 @@
 spec_version: v1
-kind: knowledge_base 
-name: Maintenance_Manuals_KB
+kind: knowledge_base
+name: maintenance_manuals_kb
 description: >
-   Contains technical specifications, troubleshooting procedures, and fault code references from the Airbus A321 Aircraft Maintenance Manual (AMM) and safety compliance regulations. Used by the Maintenance Technician Agent.
+    Contains technical maintenance manuals for various aircraft including the IBM-A321X. Use this for highly specific technical questions about torque specifications, part numbers, repair procedures, and inspection criteria.
 documents:
-   - "mock_data/A321_AMM.pdf"
-   - "mock_data/Safety_Compliance_Regs.txt"
+   - "./mock_data/IBM-A321X_Maintenance_Manual.pdf"
 vector_index:
-   # Uses the default and recommended watsonx.ai embedding model
    embeddings_model_name: ibm/slate-125m-english-rtrvr-v2

@@ -1,52 +1,59 @@
-# flight_crew_tools.py
+import requests
 import json
-from ibm_watsonx_orchestrate.agent_builder.tools import tool, ToolPermission
+from datetime import datetime
+from ibm_watsonx_orchestrate.agent_builder.tools import tool
 
-# Mock database of pre-flight procedures
-PROCEDURE_DATABASE = {
-    "de-icing_communications_check": {
-        "name": "De-Icing Communications Check",
-        "source": "FCOM Vol 2, Section 5.3, Page 12",
-        "steps": [
-            "1. Establish communication with de-icing crew on designated frequency.",
-            "2. Confirm aircraft type and tail number.",
-            "3. State the required de-icing fluid type (e.g., Type I, Type IV).",
-            "4. Verbally confirm critical surfaces to be treated (wings, tail, stabilizers).",
-            "5. Receive confirmation from de-icing crew that procedure is understood.",
-            "6. Await 'De-icing complete' call before continuing pre-flight."
-        ]
-    },
-    "cold_weather_engine_start": {
-        "name": "Cold Weather Engine Start Procedure (OAT < 0°C)",
-        "source": "FCOM Vol 1, Section 3.2, Page 45",
-        "steps": [
-            "1. Verify engine oil quantity is within limits.",
-            "2. Ensure APU bleed is ON.",
-            "3. Set Engine Start selectors to IGN/START.",
-            "4. Monitor N2 rotation; must be at least 20% before introducing fuel.",
-            "5. At 20% N2, move Engine Master Switch to ON.",
-            "6. Monitor EGT, N1, and oil pressure for normal parameters during start sequence."
-        ]
-    }
-}
+# --- Tool 1: Check Part Inventory ---
 
-@tool(name="get_preflight_procedure", permission=ToolPermission.ADMIN)
-def get_preflight_procedure(procedure_name: str) -> str:
+@tool
+def check_part_inventory(part_number: str) -> dict:
     """
-    Retrieves a specific, step-by-step pre-flight procedure from the operations manual.
+    Checks the inventory level and location for a given aircraft part number by calling the inventory API.
 
     Args:
-        procedure_name (str): The standardized name of the procedure to retrieve, e.g., 'de-icing_communications_check' or 'cold_weather_engine_start'.
+        part_number (str): The unique identifier for the aircraft part, for example, 'HG-455B'.
 
     Returns:
-        str: A JSON string containing the detailed procedure steps and source reference, or a message if not found.
+        dict: The inventory details including quantity, location, and description, or an error message if not found.
     """
-    # Normalize the input to handle variations
-    lookup_key = procedure_name.lower().replace(" ", "_")
+    api_url = f"http://127.0.0.1:5000/inventory/{part_number}"
+    try:
+        response = requests.get(api_url)
+        response.raise_for_status()  # Raises an HTTPError for bad responses (4xx or 5xx)
+        return response.json()
+    except requests.exceptions.HTTPError as http_err:
+        if response.status_code == 404:
+            return {"error": f"Part number '{part_number}' not found in inventory."}
+        else:
+            return {"error": f"HTTP error occurred: {http_err}"}
+    except requests.exceptions.RequestException as req_err:
+        return {"error": f"API connection error: {req_err}"}
+
+# --- Tool 2: Log Maintenance Task ---
+
+@tool
+def log_maintenance_task(aircraft_id: str, task_description: str) -> dict:
+    """
+    Logs a completed maintenance task for a specific aircraft into the maintenance record system.
+
+    Args:
+        aircraft_id (str): The tail number or unique identifier of the aircraft, e.g., 'N505DN'.
+        task_description (str): A clear and concise description of the maintenance task performed.
+
+    Returns:
+        dict: A confirmation message with a log ID and timestamp.
+    """
+    # In a real system, this would write to a database or a secure log file.
+    # For this demo, we simulate the log entry and return a confirmation.
+    log_entry = {
+        "log_id": f"LOG-{int(datetime.now().timestamp())}",
+        "timestamp": datetime.now().isoformat(),
+        "aircraft_id": aircraft_id,
+        "task_description": task_description,
+        "status": "LOGGED_SUCCESSFULLY"
+    }
     
-    procedure = PROCEDURE_DATABASE.get(lookup_key)
+    # Simulate logging by printing to the console
+    print(f"MAINTENANCE LOG: {json.dumps(log_entry)}")
     
-    if procedure:
-        return json.dumps(procedure, indent=2)
-    else:
-        return json.dumps({"error": "Procedure not found.", "available_procedures": list(PROCEDURE_DATABASE.keys())})
+    return log_entry

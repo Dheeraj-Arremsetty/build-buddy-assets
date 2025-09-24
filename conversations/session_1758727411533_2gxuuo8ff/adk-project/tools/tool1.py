@@ -1,33 +1,41 @@
-# maintenance_tools.py
-import random
-from enum import Enum
-from ibm_watsonx_orchestrate.agent_builder.tools import tool, ToolPermission
+from flask import Flask, jsonify
 
-class Priority(str, Enum):
-    """Enumeration for maintenance issue priority levels."""
-    P1 = 'Priority 1 (Critical - AOG)'
-    P2 = 'Priority 2 (High)'
-    P3 = 'Priority 3 (Medium)'
-    P4 = 'Priority 4 (Low)'
+app = Flask(__name__)
 
-@tool(name="log_maintenance_issue", permission=ToolPermission.ADMIN)
-def log_maintenance_issue(description: str, priority: Priority, aircraft_tail_number: str) -> str:
-    """
-    Creates a new maintenance issue ticket in the central tracking system.
+# Synthetic inventory database
+INVENTORY_DB = {
+    "HG-455B": {
+        "part_number": "HG-455B",
+        "description": "Main gear axle nut",
+        "quantity": 12,
+        "location": "ATL-Hangar 3",
+        "last_updated": "2024-10-21T14:30:00Z"
+    },
+    "BRK-PIN-991": {
+        "part_number": "BRK-PIN-991",
+        "description": "Brake wear indicator pin",
+        "quantity": 150,
+        "location": "ATL-Hangar 2",
+        "last_updated": "2024-10-20T11:00:00Z"
+    },
+    "B-UNIT-78C": {
+        "part_number": "B-UNIT-78C",
+        "description": "Brake unit assembly",
+        "quantity": 4,
+        "location": "DFW-Central Stores",
+        "last_updated": "2024-10-21T09:15:00Z"
+    }
+}
 
-    Args:
-        description (str): A detailed description of the maintenance issue observed.
-        priority (Priority): The priority level of the issue, e.g., 'Priority 1 (Critical - AOG)'.
-        aircraft_tail_number (str): The tail number of the aircraft requiring maintenance, e.g., 'N301DN'.
+@app.route('/inventory/<string:part_number>', methods=['GET'])
+def get_inventory(part_number):
+    """Endpoint to get inventory details for a specific part number."""
+    part_details = INVENTORY_DB.get(part_number.upper())
+    if part_details:
+        return jsonify(part_details)
+    else:
+        return jsonify({"error": "Part not found"}), 404
 
-    Returns:
-        str: A confirmation message with the newly created ticket number.
-    """
-    # In a real-world scenario, this function would make an API call to a system like ServiceNow or JIRA.
-    # For this demo, we simulate the API call and generate a mock ticket number.
-    print(f"Connecting to maintenance backend...")
-    ticket_id = f"MX-{random.randint(10000, 99999)}"
-    print(f"Creating ticket {ticket_id} for aircraft {aircraft_tail_number} with priority {priority.value} and description: '{description}'")
-    
-    # Return a user-friendly confirmation message
-    return f"Successfully created maintenance ticket {ticket_id} for aircraft {aircraft_tail_number}."
+if __name__ == '__main__':
+    # Run the API on localhost port 5000
+    app.run(host='0.0.0.0', port=5000, debug=True)
