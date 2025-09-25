@@ -1,0 +1,17 @@
+spec_version: v1
+kind: knowledge_base
+name: past_incident_reports_kb
+description: >
+  A knowledge base containing historical post-incident reports and runbooks from past major incidents,
+  stored in ElasticSearch. It is useful for identifying recurring issues, finding previous resolution
+  steps, and understanding patterns in system failures.
+conversational_search_tool:
+  index_config:
+    - elastic_search:
+        # NOTE: Replace with the client's actual ElasticSearch URL for the real implementation.
+        url: https://client.elasticsearch-instance.com
+        index: incident-reports-index
+        field_mapping:
+          title: incident_id
+          body: resolution_summary
+          url: confluence_link
