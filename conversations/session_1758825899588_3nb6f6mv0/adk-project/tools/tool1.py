@@ -1,0 +1,178 @@
+import random
+    import datetime
+    from ibm_watsonx_orchestrate.agent_builder.tools import tool, ToolPermission
+
+    @tool(name="report_equipment_issue", permission=ToolPermission.ADMIN)
+    def report_equipment_issue(equipment_name: str, issue_description: str) -> str:
+        """
+        Creates a maintenance ticket for a piece of store equipment that is malfunctioning or broken.
+
+        Args:
+            equipment_name (str): The name of the equipment that is broken (e.g., 'espresso machine', 'ice maker').
+            issue_description (str): A brief, clear description of the problem (e.g., 'leaking water', 'not cooling').
+
+        Returns:
+            str: A confirmation message with a synthetic ticket number.
+        """
+        # Generate a realistic, synthetic ticket ID
+        timestamp = datetime.datetime.now().strftime("%Y%m%d")
+        random_num = random.randint(1000, 9999)
+        ticket_id = f"TICKET-{timestamp}-{random_num}"
+
+        print(f"Generating maintenance ticket for '{equipment_name}' with issue: '{issue_description}'")
+        
+        # In a real application, this is where you would make an API call to a system like ServiceNow or Jira.
+        # For this demo, we return a confirmation message.
+        confirmation_message = f"Successfully created maintenance ticket {ticket_id} for the {equipment_name}. A technician will be dispatched shortly."
+        
+        return confirmation_message
+    ```
+
+2.  **OpenAPI Tool: `check_inventory_status`**
+
+    This tool allows a barista to check the stock level of an item using natural language. It is defined by an OpenAPI specification, which is a standard way to describe REST APIs. This pattern is ideal for integrating with existing microservices or enterprise systems that expose API endpoints. By enabling quick inventory checks, this tool helps prevent stockouts and ensures partners can fulfill customer orders efficiently.
+
+    Create the following JSON file:
+
+    **File:** `tools/Mock_Inventory_API.json`
+    ```json
+    {
+      "openapi": "3.0.0",
+      "info": {
+        "title": "Mock Store Inventory API",
+        "version": "1.0.0",
+        "description": "A simple API to check the stock status of store inventory items."
+      },
+      "servers": [
+        {
+          "url": "https://mock.inventory.api"
+        }
+      ],
+      "paths": {
+        "/inventory/{item_name}": {
+          "get": {
+            "summary": "Check Inventory Status",
+            "operationId": "check_inventory_status",
+            "description": "Retrieves the current stock level and status for a specific inventory item.",
+            "parameters": [
+              {
+                "name": "item_name",
+                "in": "path",
+                "required": true,
+                "description": "The name of the inventory item to check (e.g., 'Vanilla Syrup', 'Espresso Beans').",
+                "schema": {
+                  "type": "string"
+                }
+              }
+            ],
+            "responses": {
+              "200": {
+                "description": "Successful response with inventory status.",
+                "content": {
+                  "application/json": {
+                    "schema": {
+                      "type": "object",
+                      "properties": {
+                        "item": {
+                          "type": "string"
+                        },
+                        "status": {
+                          "type": "string",
+                          "enum": ["In Stock", "Low Stock", "Out of Stock"]
+                        },
+                        "quantity": {
+                          "type": "integer"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+    ```
+    > **Note:** The `url` in the `servers` block is a placeholder. Orchestrate uses the OpenAPI definition to understand the tool's inputs and outputs, but for this demo, the tool's execution will be mocked and will not make a live API call.
+
+### Step 4: Create Agent Definitions (YAML)
+
+Now we will define the three agents that make up our solution architecture.
+
+1.  **`Recipe_and_Policy_Agent` (Collaborator)**
+
+    This agent is a specialist in information retrieval. Its sole purpose is to answer questions by searching the `starbucks_knowledge_base`. By isolating this function, we create a modular and maintainable component that can be easily updated by simply adding new documents to its knowledge base, without changing any other part of the system.
+
+    **File:** `agents/recipe_policy_agent.yaml`
+    ```yaml
+    spec_version: v1
+    kind: native
+    name: Recipe_and_Policy_Agent
+    llm: watsonx/ibm/granite-3-8b-instruct
+    style: default
+    description: >
+      This agent is an expert on all official Starbucks documents. Use it to answer questions about drink recipes, food preparation standards, and official company policies found in the partner handbook. It does not perform operational tasks.
+    instructions: >
+      Your only purpose is to answer questions based on the provided knowledge base.
+      Search the knowledge base for relevant information to the user's query about recipes or policies.
+      Provide clear, concise answers and cite your sources. Do not answer questions outside of this scope.
+    tools: []
+    collaborators: []
+    knowledge_base:
+      - starbucks_knowledge_base
+    ```
+
+2.  **`Store_Operations_Agent` (Collaborator)**
+
+    This agent is the "doer." It is equipped with tools to execute specific, action-oriented tasks. Its description clearly outlines its capabilities—reporting issues and checking inventory—which allows the supervisor agent to route relevant requests to it. This tool-using agent pattern is fundamental for automating business processes and integrating Orchestrate with other systems.
+
+    **File:** `agents/store_operations_agent.yaml`
+    ```yaml
+    spec_version: v1
+    kind: native
+    name: Store_Operations_Agent
+    llm: watsonx/ibm/granite-3-8b-instruct
+    style: default
+    description: >
+      This agent handles practical, in-store operational tasks. Use it to report broken equipment to create a maintenance ticket or to check the current inventory status of an item.
+    instructions: >
+      You are an operations assistant.
+      - When a user wants to report a broken piece of equipment, use the `report_equipment_issue` tool. You must collect the equipment name and a description of the issue from the user before using the tool.
+      - When a user asks about the stock level of an item, use the `check_inventory_status` tool.
+    tools:
+      - report_equipment_issue
+      - check_inventory_status
+    collaborators: []
+    ```
+
+3.  **`Barista_Buddy_Agent` (Supervisor)**
+
+    This is the main agent and the single point of contact for the user. It acts as an intelligent router or "supervisor." Its instructions are critical; they define the reasoning logic for delegating tasks. Based on the user's intent, it decides whether to consult the `Recipe_and_Policy_Agent` for information or the `Store_Operations_Agent` for actions. This supervisor-collaborator pattern is a powerful way to build scalable and complex AI systems.
+
+    **File:** `agents/barista_buddy_agent.yaml`
+    ```yaml
+    spec_version: v1
+    kind: native
+    name: Barista_Buddy_Agent
+    llm: watsonx/ibm/granite-3-8b-instruct
+    style: default
+    description: >
+      A helpful AI assistant for Starbucks store partners. It can answer questions about drink recipes and company policies by consulting the Recipe_and_Policy_Agent. It can also help with store operations like reporting broken equipment or checking inventory by using the Store_Operations_Agent.
+    instructions: >
+      Persona: You are the Barista Buddy, a friendly and helpful AI assistant for Starbucks partners.
+
+      Reasoning:
+      - For any questions about how to make drinks, food preparation, or official company policies, you MUST use the `Recipe_and_Policy_Agent`.
+      - For any tasks related to store equipment, maintenance, or checking inventory stock levels, you MUST use the `Store_Operations_Agent`.
+      - If the user's request is unclear, ask clarifying questions to determine if it is a knowledge question or an operational task.
+    collaborators:
+      - Recipe_and_Policy_Agent
+      - Store_Operations_Agent
+    ```
+
+### Step 5: Create `requirements.txt`
+
+This file lists any Python packages required by our tools. While our tool is simple, it's a best practice to include this file.
+
+**File:** `requirements.txt`
