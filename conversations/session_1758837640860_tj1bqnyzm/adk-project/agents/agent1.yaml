@@ -1,0 +1,12 @@
+spec_version: v1
+kind: knowledge_base 
+name: finsecure_compliance_kb
+description: >
+   Contains FinSecure Capital's internal compliance policies and external regulatory bulletins. 
+   This knowledge is essential for verifying transaction compliance, identifying risks based on 
+   jurisdiction and industry, and checking against official watchlists.
+documents:
+   - "docs/internal_policy_v1.txt"
+   - "docs/regulatory_bulletin_2024_q3.txt"
+vector_index:
+   embeddings_model_name: ibm/slate-125m-english-rtrvr-v2
