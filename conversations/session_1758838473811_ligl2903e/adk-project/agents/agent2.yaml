@@ -1,0 +1,23 @@
+servers:
+  - url: https://demo.docusign.net/restapi
+paths:
+  /v2.1/accounts/{accountId}/envelopes:
+    post:
+      operationId: send_for_signature_docusign
+      summary: Send a contract for electronic signature
+      description: Creates a DocuSign envelope and sends it to the specified recipients for signature.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                emailSubject:
+                  type: string
+                documentBase64:
+                  type: string
+                recipients:
+                  type: object
+      responses:
+        '201':
+          description: Envelope sent successfully.

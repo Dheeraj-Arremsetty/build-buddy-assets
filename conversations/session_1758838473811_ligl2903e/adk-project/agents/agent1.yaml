@@ -1,0 +1,12 @@
+spec_version: v1
+kind: knowledge_base 
+name: legal_risk_kb
+description: >
+   Contains definitions and examples of high-risk legal clauses and non-standard terms 
+   to aid in contract review. This knowledge base is the primary source of truth for the
+   Contract Intelligence Agent when identifying potential contractual risks.
+documents:
+   - "mock_data/Legal_Risk_Definitions.pdf"
+vector_index:
+   # Using the default embedding model for simplicity
+   embeddings_model_name: ibm/slate-125m-english-rtrvr-v2

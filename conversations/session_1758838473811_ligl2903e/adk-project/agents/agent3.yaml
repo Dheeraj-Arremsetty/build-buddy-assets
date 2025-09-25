@@ -1,0 +1,29 @@
+servers:
+  - url: https://my-salesforce-instance.my.salesforce.com
+paths:
+  /services/data/v58.0/sobjects/Opportunity/{Id}:
+    patch:
+      operationId: update_salesforce_opportunity
+      summary: Update a Salesforce Opportunity
+      description: Updates the stage or other fields of a Salesforce Opportunity record.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                StageName:
+                  type: string
+                Contract_Status__c:
+                  type: string
+      responses:
+        '204':
+          description: Opportunity updated successfully.
+  /services/data/v58.0/sobjects/Account/{Id}:
+    get:
+      operationId: get_salesforce_account_details
+      summary: Get Salesforce Account Details
+      description: Retrieves details for a specific Account in Salesforce, such as name and billing address.
+      responses:
+        '200':
+          description: Account details retrieved.
