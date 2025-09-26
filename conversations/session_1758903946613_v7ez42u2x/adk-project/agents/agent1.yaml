@@ -1,0 +1,14 @@
+spec_version: v1
+kind: knowledge_base 
+name: onboarding_kb
+description: >
+   Contains comprehensive information for new baristas, including the employee handbook,
+   benefits enrollment guide, and the initial training schedule. Use this to answer
+   questions about company policies, dress code, benefits plans, and training modules.
+documents:
+   - "knowledge_base/barista_employee_handbook.pdf"
+   - "knowledge_base/benefits_enrollment_guide.docx"
+   - "knowledge_base/new_hire_training_schedule.csv"
+vector_index:
+   # Using the default watsonx.ai embedding model
+   embeddings_model_name: ibm/slate-125m-english-rtrvr-v2
