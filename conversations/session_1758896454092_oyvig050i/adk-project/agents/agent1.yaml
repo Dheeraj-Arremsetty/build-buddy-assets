@@ -1,0 +1,9 @@
+spec_version: v1
+kind: knowledge_base
+name: aml_policy_kb
+description: >
+  Contains the official Anti-Money Laundering (AML) policy documents and regulatory guidelines for FinSecure Analytics. Use this to answer questions about transaction monitoring thresholds, customer due diligence requirements, sanctions screening procedures, and reporting obligations.
+documents:
+  - "knowledge_base/documents/FinSecure_AML_Policy_Guide.pdf"
+vector_index:
+  embeddings_model_name: ibm/slate-125m-english-rtrvr-v2
