@@ -2,40 +2,19 @@
 # Generated deployment script
 
 # Script block 1
-pip install ibm-watsonx-orchestrate
+pip install ibm-watsonx-orchestrate-adk
     ```
-2.  **Active Environment**: You must have an active watsonx Orchestrate environment (either cloud or local Developer Edition). Activate your environment using the CLI.
+3.  **Orchestrate Environment**: You must have an active watsonx Orchestrate environment configured. This could be a cloud instance or the local Developer Edition. Ensure you have initialized your environment using the CLI:
     ```bash
-    orchestrate env activate <your_env_name>
+    orchestrate environment init
     ```
-3.  **Python 3.8+**: A compatible version of Python is required to create the custom tools.
-4.  **Project Directory**: Create a dedicated directory to organize all your files for this demo.
-    ```bash
-    mkdir empower-demo
-    cd empower-demo
-    mkdir agents tools knowledge_base
-    ```
-5.  **Required Python Libraries**: Create a `requirements.txt` file in your root `empower-demo` directory. The tools will use the `requests` library for simulated API calls.
-    ```text
-    # requirements.txt
-    requests
-    ```
-    Install the dependencies:
-    ```bash
-    pip install -r requirements.txt
-    ```
+4.  **Text Editor/IDE**: A code editor like Visual Studio Code is recommended for creating and editing the Python (`.py`) and YAML (`.yaml`) files.
 
-## Step 1: Create the Tools
+## Step 1: Project Setup
+First, we'll create a structured directory for our project. This organization helps in managing agents, tools, and dependencies cleanly.
 
-Tools are the foundational components that allow agents to perform actions. We will create two sets of Python-based tools: one for customer care (healthcare/benefits) and one for IT support (ServiceNow).
+1.  Create a main project folder named `financial_compliance_demo`.
+2.  Inside `financial_compliance_demo`, create two subdirectories: `agents` and `tools`.
 
-### 1.1 Customer Care Tools
-
-These tools, as detailed in the reference material, simulate interactions with a healthcare benefits system.
-
-#### **File: `tools/customer_care_tools.py`**
-
-This file will contain all three customer care tools for simplicity.
-
-**Business Value**: These tools automate the retrieval of complex benefits, claims, and provider information, empowering employees to self-serve their healthcare inquiries 24/7. This reduces calls to the HR department and improves employee satisfaction by providing immediate answers.
+Your project structure should look like this:
 
