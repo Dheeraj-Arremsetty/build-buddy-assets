@@ -2,17 +2,11 @@
 # Generated deployment script
 
 # Script block 1
-pip install ibm-watsonx-orchestrate
+pip install "ibm-watsonx-orchestrate[adk]"
     ```
-3.  **Orchestrate Environment**: You must have a configured IBM watsonx Orchestrate environment (either cloud or local developer edition). Initialize and activate your environment using the CLI:
-    ```bash
-    # Configure your environment (run once)
-    orchestrate env add
-
-    # Activate your environment for the current session
-    orchestrate env use <your_environment_name>
-    ```
-4.  **Project Directory**: Create a dedicated directory to organize all the files for this demo. A structured layout is essential for managing agents, tools, and dependencies.
+*   **Python**: Python version 3.9 or higher is required.
+*   **Environment Initialization**: Your ADK must be configured to point to your watsonx Orchestrate environment. If you haven't done so, run the `orchestrate env init` command and follow the prompts.
+*   **Project Directory**: Create a dedicated directory structure to organize your files. This promotes maintainability and clarity.
     ```bash
     mkdir finsecure_demo
     cd finsecure_demo
@@ -20,18 +14,19 @@ pip install ibm-watsonx-orchestrate
     mkdir tools
     ```
 
-## Step 1: Create Project Dependencies
+## 3. Step-by-Step Instructions
 
-To ensure the Python-based tools have access to necessary libraries, we will define them in a `requirements.txt` file. This file lists all external packages that our tools depend on.
+### Step 1: Create Python Tools
 
-### Business Value
-Defining dependencies in a `requirements.txt` file is a standard best practice that ensures reproducibility and simplifies deployment. It guarantees that the tools will run consistently across different environments by installing the exact libraries they were developed with.
+The foundation of our agent capabilities lies in a set of well-defined Python tools. Each tool performs a discrete task, such as fetching data or executing a business rule. We will create four separate Python files, one for each functional area, and place them in the `tools/` directory.
 
-### `requirements.txt` File
-Create the following file in the root of your `finsecure_demo` directory. For this demo, we will use the `requests` library to simulate API calls and `python-dotenv` for managing environment variables, which is a good practice for future extensions.
+---
 
-**File:** `finsecure_demo/requirements.txt`
+#### 3.1. Data Harvester Tools (`data_harvester_tools.py`)
 
-# Script block 2
-pip install -r requirements.txt
+**Business Value**: These tools automate the critical first step of any compliance check: data aggregation. By automatically fetching real-time market data, client portfolio specifics, and instrument details, the `DataHarvesterAgent` eliminates the manual, error-prone process of analysts gathering information from disparate systems. This ensures the compliance check is always based on accurate, up-to-the-minute information, improving decision quality and speed.
+
+**Technical Implementation**: The tools simulate API calls to various financial data systems. They generate realistic, synthetic data structures representing market prices, portfolio holdings, and security details. Each function is decorated with `@tool` and includes a detailed docstring that watsonx Orchestrate uses to understand its purpose, arguments, and return values.
+
+Create the file `tools/data_harvester_tools.py`:
 
