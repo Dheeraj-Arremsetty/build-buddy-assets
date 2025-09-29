@@ -1,0 +1,47 @@
+spec_version: v1
+    kind: knowledge_base
+    name: partner_pro_operations_kb
+    description: >
+      Contains official documentation and standard operating procedures (SOPs) for store operations.
+      This includes cash handling policies, store opening and closing checklists, security protocols, and inventory management guidelines.
+    documents:
+      - "documents/operations_guide.txt"
+    vector_index:
+      embeddings_model_name: ibm/slate-125m-english-rtrvr-v2
+    ```
+*   `promotions_kb.yaml`:
+    ```yaml
+    spec_version: v1
+    kind: knowledge_base
+    name: partner_pro_promotions_kb
+    description: >
+      A comprehensive repository of all current and upcoming marketing promotions.
+      It includes details on discount structures, promotional periods, product eligibility, and visual merchandising standards.
+    documents:
+      - "documents/promo_playbook.txt"
+    vector_index:
+      embeddings_model_name: ibm/slate-125m-english-rtrvr-v2
+    ```
+*   `hr_kb.yaml`:
+    ```yaml
+    spec_version: v1
+    kind: knowledge_base
+    name: partner_pro_hr_kb
+    description: >
+      The authoritative source for all Human Resources policies and procedures.
+      This covers topics such as payroll schedules, employee leave policies, dress code, and performance management processes.
+    documents:
+      - "documents/hr_manual.txt"
+    vector_index:
+      embeddings_model_name: ibm/slate-125m-english-rtrvr-v2
+    ```
+
+## Step 2: Create Python Tools for Actionable Tasks
+
+While knowledge bases provide answers from documents, tools allow agents to perform actions or retrieve dynamic, structured data. We will create a set of Python-based tools for each specialized domain. These tools will generate realistic synthetic data, simulating interactions with live business systems like a POS or HR information system.
+
+In the `tools/` directory, create the following Python files:
+
+**2.1. Operations Tools (`operations_tools.py`)**
+
+This toolset provides access to structured operational data and procedures. It helps managers execute daily tasks correctly, ensuring compliance and reducing errors, which directly contributes to the goal of "Operational Excellence".
