@@ -1,167 +1,235 @@
-Of course. Here is a comprehensive demo presentation script for IBM watsonx Orchestrate, tailored to the Starbucks AI-Powered Barista Onboarding Assistant use case.
+Of course. Here is a comprehensive demo presentation script for IBM watsonx Orchestrate, tailored to the Starbucks "AI-Powered Barista Onboarding Assistant" use case.
+
+This script is designed to be delivered by an IBM expert to Starbucks stakeholders. It follows a compelling narrative structure, focuses on business value, and incorporates technical depth in an accessible way, drawing inspiration from the provided implementation details.
 
 ---
 
-### **Demo Presentation Script: The Starbucks Partner Pro Assistant**
-**Powered by IBM watsonx Orchestrate**
+### **IBM watsonx Orchestrate Demo: The Starbucks Partner Pod Assistant**
 
-**Objective:** To demonstrate how IBM watsonx Orchestrate can create a sophisticated, multi-agent AI assistant that solves critical business challenges for Starbucks, focusing on barista onboarding, operational consistency, and employee empowerment.
-
+**Presenter:** IBM watsonx Orchestrate Specialist
 **Audience:** Starbucks Operations, HR, and IT Leadership
-
-**Presenter:** [Your Name/Title], Demo Specialist, IBM
+**Duration:** 20 Minutes
 
 ---
 
-### **Part 1: Setting the Stage (3 Minutes)**
+### **Section 1: The Morning Rush & The Onboarding Challenge (3 Minutes)**
 
-**[SCREEN: Title Slide - "Empowering the Next Generation of Baristas: A Starbucks & IBM watsonx Orchestrate Partnership"]**
+**(Opening Narrative)**
+
+**Presenter:** "Good morning, everyone. Thank you for your time today.
+
+We all know the feeling of walking into a Starbucks during the morning rush. The energy is electric, the aroma of coffee is in the air, and there’s a complex, perfectly synchronized dance happening behind the counter. That dance is performed by your partners—your baristas. They are the heart of the customer experience.
+
+But what happens when one of those dancers is new?
+
+Imagine a new partner, let's call her Alex. It's her first week. The line is growing, a customer asks for a complex custom order, and the store manager is busy handling a supplier delivery. Alex has a simple question about the correct milk steaming sequence for a flat white, a question that’s answered on page 47 of a training manual she reviewed three days ago.
+
+In that moment, she feels stuck. She can either interrupt her busy manager, guess and risk making the drink incorrectly, or take extra time searching for the answer, slowing down the entire line. This single moment encapsulates the core challenge of retail onboarding."
+
+**(Problem Statement)**
+
+*   **The Challenge:** "This scenario highlights three key business challenges you face every day:"
+    *   **1. Manager Bandwidth:** Your store managers are your most valuable operational assets. Every minute they spend answering repetitive training questions is a minute not spent on customer engagement, inventory management, or team coaching.
+    *   **2. Inconsistent Training:** On-the-job training, while essential, can vary from manager to manager and store to store. This can lead to inconsistencies in drink quality and customer service, which directly impacts your brand promise.
+    *   **3. Slower Ramp-Up Time:** The faster a new partner becomes confident and proficient, the faster they deliver value. A lengthy onboarding process impacts store efficiency, increases the burden on tenured staff, and can affect new hire morale, potentially leading to higher turnover.
+
+---
+
+### **Section 2: The Solution - The Partner Pod Assistant (2 Minutes)**
+
+**(Introducing the Vision)**
+
+**Presenter:** "What if we could give every new partner, like Alex, an expert mentor available 24/7, right on their in-store tablet? A mentor that has perfectly memorized every training manual, every beverage recipe, and every company policy. A mentor that can answer questions instantly, in natural language, and even help with operational tasks.
+
+That’s exactly what we’ve built using **IBM watsonx Orchestrate**. We call it the **'Partner Pod Assistant.'**"
+
+**(Value Proposition)**
+
+*   **What it is:** "The Partner Pod Assistant is an AI agent, powered by watsonx Orchestrate, that lives on your in-store tablets. It’s been trained on your proprietary knowledge base—your official training manuals, beverage recipe cards, and HR policies."
+*   **How it helps:** "It acts as a digital expert, empowering new hires to find answers and solve problems independently. This accomplishes three primary goals:"
+    *   **Empowers New Hires:** Reduces anxiety and builds confidence by providing instant, accurate answers.
+    *   **Frees Up Managers:** Allows managers to focus on high-value leadership and operational tasks.
+    *   **Ensures Consistency:** Guarantees that every partner receives the same, brand-approved information, every single time.
+
+"Let me show you how it works."
+
+---
+
+### **Section 3: Live Demo - A Day in the Life of a New Partner (8 Minutes)**
+
+**(Presenter moves to a tablet/demo screen interface styled with Starbucks branding)**
+
+**Presenter:** "Let's go back to our new partner, Alex. She's on the floor and has the Partner Pod Assistant open on her tablet. We'll walk through a few common scenarios."
+
+---
+
+#### **Demo Scenario 1: Foundational Knowledge - The Recipe Question**
+
+**Presenter:** "First, a simple recipe question. Alex needs a quick refresher on a signature drink."
+
+*   **(Presenter types or speaks into the demo interface):**
+    > **Prompt:** "How do I make a grande Caramel Macchiato, and what are the key steps?"
+
+*   **(Expected Outcome):** The AI responds instantly with a clear, concise, and formatted answer.
+
+    > **AI Response:** "Of course! Here are the steps for a grande Caramel Macchiato, based on the *Beverage Recipe Manual (BRM), page 23*:
+    >
+    > 1.  **Prep:** Queue 2 shots of espresso.
+    > 2.  **Milk:** Steam 2% milk to 150-160°F, ensuring a fine micro-foam.
+    > 3.  **Syrup:** Pump 3 pumps of Vanilla Syrup into the grande cup.
+    > 4.  **Combine:** Pour the steamed milk into the cup, holding back the foam.
+    > 5.  **Espresso:** Pour the 2 espresso shots slowly over the top of the milk. They should 'mark' the foam.
+    > 6.  **Topping:** Top with a crosshatch pattern of Caramel Drizzle.
+    >
+    > **Key Tip:** The 'marking' of the foam by the espresso is the signature of a well-made Macchiato!"
 
 **Talking Points:**
 
-*   **(Introduction)** "Good morning, everyone. Thank you for your time. My name is [Your Name], and I’m a specialist on the IBM watsonx team. We're thrilled to be here today because we believe we have a solution that speaks directly to the heart of the Starbucks brand: the human connection forged over a perfect cup of coffee."
-*   **(Acknowledge the Brand)** "Starbucks isn’t just a coffee company; it's an experience company. And the barista—the partner—is the face of that experience. Every interaction they have shapes the customer's day and their perception of your brand."
-*   **(The Core Challenge)** "We understand that maintaining that high standard of excellence across thousands of stores and with a dynamic workforce presents a significant challenge. How do you ensure every new partner is confident, knowledgeable, and ready to deliver that signature Starbucks Experience from day one?"
-*   **(Agenda)** "Today, we'll explore that challenge. Then, I'll introduce a solution we've built called the **Starbucks Partner Pro Assistant**, powered by IBM watsonx Orchestrate. We'll dive into a live demonstration showing how it works in real-world scenarios, discuss the business value, and then open it up for questions."
+*   "Notice the response is not just a block of text. It's structured, easy to read, and even provides a page citation from your own document. This is the power of Retrieval-Augmented Generation (RAG) working with your knowledge base."
+*   "This is faster and more reliable than flipping through a binder or asking a coworker."
 
 ---
 
-### **Part 2: The Business Challenge: Scaling Excellence (2 Minutes)**
+#### **Demo Scenario 2: Policy & Procedure - The Customer Service Question**
 
-**[SCREEN: Slide with key challenges and stats - e.g., "High Turnover," "Inconsistent Training," "Time-to-Proficiency," with relevant industry stats if available]**
+**Presenter:** "Now for a more nuanced situation. A customer is unhappy with their drink. Alex needs to know the correct, brand-approved procedure."
+
+*   **(Presenter types or speaks):**
+    > **Prompt:** "A customer said their latte is too cold. What's the 'LATTE' model for handling this?"
+
+*   **(Expected Outcome):** The AI provides the specific, branded policy guidance.
+
+    > **AI Response:** "Great question. Handling customer feedback is key. Here is the 'LATTE' model from the *Partner Guide, Section 4.2*:
+    >
+    > *   **L - Listen:** Give the customer your full attention and listen to their concern.
+    > *   **A - Apologize:** Offer a sincere apology for their experience.
+    > *   **T - Take Action:** Offer to remake the drink immediately, or suggest an alternative.
+    > *   **T - Thank:** Thank the customer for bringing the issue to your attention.
+    > *   **E - Ensure Satisfaction:** Follow up to make sure their new beverage is perfect.
+    >
+    > Remember to remain positive and focused on making the moment right for the customer."
 
 **Talking Points:**
 
-*   "The challenge, as we see it, is multi-faceted:"
-    *   **Speed to Competency:** The industry sees high turnover. Getting a new barista from their first day to being a confident, proficient partner can take weeks. During this time, they rely heavily on shift supervisors and tenured partners, pulling them away from customer-facing tasks.
-    *   **Consistency is Key:** With an extensive menu and rigorous operational standards, ensuring every drink is made perfectly and every policy is followed consistently across every store is a monumental task.
-    *   **Information Overload:** New hires are given binders, manuals, and digital resources. Finding the right answer to a specific question—'What’s the policy for remaking a drink?' or 'How many pumps of vanilla go in a grande vs. a venti?'—in the middle of a rush is nearly impossible.
-    *   **The Bottom Line Impact:** This all translates to longer training cycles, potential for waste from incorrectly made drinks, a dip in customer satisfaction, and added stress on your most experienced employees. Our goal is to reduce new hire time-to-proficiency by an estimated **30-50%**.
+*   "This is about more than just recipes; it's about embedding your culture and service standards. Every new hire gets the exact same, perfect answer, ensuring brand consistency across all 30,000 stores."
 
 ---
 
-### **Part 3: The Solution: The Starbucks Partner Pro Assistant (3 Minutes)**
+#### **Demo Scenario 3: Taking Action - Orchestrating a Task**
 
-**[SCREEN: Slide showing a tablet UI with the "Partner Pro" logo. Diagram showing a Supervisor Agent routing queries to two Collaborator Agents: "Recipe Expert" and "Policy Guide".]**
+**Presenter:** "This is where we go beyond just answering questions. This is the 'Orchestrate' in watsonx Orchestrate. The AI can use tools to perform actions. Let's say the scanner on the point-of-sale system is malfunctioning."
+
+*   **(Presenter types or speaks):**
+    > **Prompt:** "The barcode scanner on Terminal 2 isn't working. I've already tried restarting it."
+
+*   **(Expected Outcome):** The AI recognizes the need for action and uses a tool to create an IT support ticket.
+
+    > **AI Response:** "I'm sorry to hear that. Since a restart didn't work, I will log a support ticket for you.
+    >
+    > **Action:** Creating IT Support Ticket...
+    > **Tool Used:** `create_support_ticket`
+    > **Details:**
+    >   *   **Store ID:** #12345 (Seattle Main St)
+    >   *   **Asset:** POS Terminal 2
+    >   *   **Issue:** Barcode scanner unresponsive
+    >   *   **Urgency:** High
+    >
+    > **Ticket #INC0078945 has been created.** The tech support team has been notified. Your store manager will receive a confirmation email."
 
 **Talking Points:**
 
-*   "Imagine placing a digital expert in the hands of every new partner. That is the **Starbucks Partner Pro Assistant**."
-*   **(What It Is)** "It’s an AI agent, living on in-store tablets, that new hires can talk to in plain English. They can ask questions about drink recipes, health and safety procedures, company policies, or customer service best practices and get instant, accurate answers."
-*   **(How It's Different - The Multi-Agent System)** "This is not just a simple chatbot. It’s built on a sophisticated multi-agent architecture within watsonx Orchestrate.
-    *   We have a **Supervisor Agent** that acts like a digital shift lead. It listens to the partner's question and understands the *intent*.
-    *   It then intelligently routes the query to the right specialist. Is it a recipe question? It goes to the **Recipe Expert Agent**, which is connected to your drink database.
-    *   Is it a policy question? It's routed to the **Policy Guide Agent**, which has been trained securely on your official knowledge base—the Barista Basics Handbook, the Health and Safety Manual, and more.
-*   **(The Value Proposition)** "The result is a seamless experience. The barista doesn't need to know where the information lives; they just ask. This system provides a **single source of truth**, ensuring every answer is accurate, compliant, and directly aligned with Starbucks' standards."
+*   **This is the key differentiator.** The assistant didn't just tell Alex *how* to file a ticket; it *did it for her*.
+*   "watsonx Orchestrate seamlessly connected to a tool—in this case, a simulated function to log a ticket in a system like ServiceNow. It automated a multi-step business process from a simple, natural language request."
 
 ---
 
-### **Part 4: Live Demonstration (6 Minutes)**
+### **Section 4: How It Works - The Power of watsonx Orchestrate (2 Minutes)**
 
-**[SCREEN: Switch to live demo environment - a simple chat interface for the Partner Pro Assistant]**
+**(Show a simplified architectural diagram)**
 
-"Let's see this in action. I'm going to play the role of a new partner, Alex, on their third day. The morning rush is starting, and I have questions."
+**Presenter:** "What you just saw isn't magic; it's a powerful combination of capabilities brought together by the watsonx Orchestrate platform. Let's quickly look under the hood."
 
-**Demo Flow:**
+1.  **The Brain (Large Language Model):** At the core is a powerful LLM from IBM's watsonx.ai platform. It understands the user's intent from their natural language questions.
 
-*   **Scenario 1: A Standard Recipe Question**
-    *   **Presenter Action:** Type into the chat: `How do I make a grande Caramel Macchiato?`
-    *   **Talking Points:** "My first customer wants a classic. I'm a little nervous and don't want to ask my busy shift supervisor. I'll just ask the Partner Pro."
-    *   **Expected Outcome:** The assistant responds instantly with clear, numbered steps and ingredients, exactly as defined in the `drink_recipes.json` file.
-        ```
-        Of course! Here is the recipe for a Grande Caramel Macchiato:
+2.  **The Library (Knowledge Base):** We connected Orchestrate to a knowledge base containing your documents—PDFs of training manuals, Word docs of policies, etc. When a question is asked, the RAG pattern finds the most relevant passages to ensure the answer is grounded in your specific truth.
 
-        **Ingredients:**
-        - Vanilla Syrup: 3 pumps
-        - 2% Milk: to third line
-        - Espresso: 2 shots
-        - Caramel Drizzle: cross-hatch pattern
+    *(Briefly show a sample YAML snippet)*
+    ```yaml
+    # Barista Assistant Knowledge Base Definition
+    kind: knowledge_base
+    name: starbucks_training_kb
+    description: >
+      Contains all official Starbucks training manuals, beverage recipes,
+      and partner policy guides for onboarding.
+    documents:
+      - "docs/beverage_recipe_manual_2025.pdf"
+      - "docs/partner_onboarding_guide.docx"
+      - "docs/customer_service_policies.txt"
+    ```
 
-        **Steps:**
-        1. Pump Vanilla Syrup into the cup.
-        2. Steam 2% milk.
-        3. Pour steamed milk into the cup.
-        4. Queue and pour 2 espresso shots over the top of the milk.
-        5. Top with Caramel Drizzle in a double-circle, cross-hatch pattern.
-        ```
-    *   **Technical Highlight:** "Behind the scenes, the Supervisor Agent identified this as a recipe query and routed it to the **Recipe Expert Agent**. That agent used a custom Python tool to look up the recipe in your database. It's fast, accurate, and scalable."
+3.  **The Hands (Tools):** For the ticket creation, the agent used a 'tool.' Tools are skills you give to the agent. Using the **Agent Development Kit (ADK)**, your developers can easily create custom tools in Python that connect to your existing APIs and backend systems—whether it's your IT service desk, inventory system, or HR platform.
 
-*   **Scenario 2: A Policy and Safety Question**
-    *   **Presenter Action:** Type: `What's the LATTE model for handling customer issues?`
-    *   **Talking Points:** "Okay, a customer seems unhappy with their drink. I remember hearing about a service recovery model in training, but I can't recall the details."
-    *   **Expected Outcome:** The assistant provides a concise, helpful answer sourced directly from the knowledge base.
-        ```
-        The LATTE model is used for service recovery. It stands for:
-        - **L**isten to the customer.
-        - **A**pologize for their experience.
-        - **T**ake action to make it right.
-        - **T**hank them for bringing it to your attention.
-        - **E**nsure satisfaction.
-        ```
-    *   **Technical Highlight:** "Here, the Supervisor routed the query to the **Policy Guide Agent**. This agent didn't just search a document; it used Retrieval-Augmented Generation (RAG) to understand the question and synthesize a precise answer from the `Barista_Basics_Handbook.txt` file in its knowledge base. This ensures the answer is always from an official source."
+    *(Briefly show a sample Python snippet)*
+    ```python
+    # A simplified tool to create a support ticket
+    from ibm_watsonx_orchestrate.agent_builder.tools import tool
 
-*   **Scenario 3: A Complex, Multi-Part Question**
-    *   **Presenter Action:** Type: `A customer spilled hot coffee and it splashed on their hand. What's the procedure?`
-    *   **Talking Points:** "This is a more urgent and complex situation involving both customer service and safety. Let's see how the assistant handles it."
-    *   **Expected Outcome:** The assistant provides a multi-step response, drawing information from different sources.
-        ```
-        I can help with that. Here are the immediate steps based on our manuals:
+    @tool
+    def create_support_ticket(asset: str, issue: str) -> str:
+        """Creates an IT support ticket for faulty in-store equipment."""
+        print(f"Connecting to IT Service Desk API...")
+        # ... logic to call the real API ...
+        ticket_id = "INC0078945" # Dummy ID for demo
+        return f"Successfully created ticket {ticket_id}."
+    ```
 
-        **For the Customer:**
-        1.  Remain calm and ensure the customer is okay. Offer immediate assistance like a cold cloth or first aid.
-        2.  Apologize for the incident and apply the LATTE model for service recovery.
-
-        **For Reporting:**
-        1.  Notify your shift supervisor immediately about any incident.
-        2.  An incident report form must be completed within 24 hours.
-
-        This information is from the Health and Safety Manual and the Barista Basics Handbook.
-        ```
-    *   **Technical Highlight:** "This is the power of the multi-agent system. The Supervisor Agent understood the query had two parts: safety and procedure. It likely consulted the **Policy Guide Agent**, which pulled information from *both* the Health and Safety Manual and the Barista Handbook to create one comprehensive, actionable answer. This is something a simple chatbot cannot do."
+"watsonx Orchestrate is the platform that brings all of this together, intelligently deciding whether to answer from the knowledge base or execute an action with a tool."
 
 ---
 
-### **Part 5: Business Value & ROI (2 Minutes)**
+### **Section 5: Business Value & ROI (3 Minutes)**
 
-**[SCREEN: Summary slide mapping Technical Capabilities to Business Value]**
+**Presenter:** "So, what does this mean for your bottom line? The value is clear and measurable."
 
-| Technical Capability (watsonx Orchestrate) | Business Value for Starbucks |
-| :--- | :--- |
-| **Multi-Agent Architecture** | Handles complex, real-world queries. Scales easily by adding new specialist agents (e.g., Inventory, Maintenance). |
-| **Knowledge Base (RAG)** | Ensures 100% compliance and consistency. A single source of truth that's easy to update. |
-| **Custom Python Tools** | Seamlessly integrates with your existing systems—recipe databases, inventory, HR platforms. |
-| **Enterprise-Grade Platform** | Secure, reliable, and governed by IBM's trust and transparency principles. |
+*   **Faster Onboarding & Proficiency:**
+    *   **Metric:** Reduce 'Time to Competency' for new partners by an estimated **30-40%**.
+    *   **Impact:** New hires start contributing to store efficiency and sales much faster.
 
-**Talking Points:**
+*   **Increased Manager Productivity:**
+    *   **Metric:** Free up an estimated **5-8 hours per week** of a store manager's time.
+    *   **Impact:** That time is reinvested into revenue-generating activities: coaching, improving store operations, and enhancing the customer experience.
 
-*   "What you just saw wasn't just a tech demo; it was a demonstration of business transformation."
-*   **Faster Onboarding:** You drastically reduce the time it takes for a new partner to become confident and productive, leading to significant labor cost savings.
-*   **Enhanced Consistency:** Every drink, every policy, every time. This protects the brand experience and improves customer satisfaction.
-*   **Empowered Employees:** Partners feel supported and have the tools to succeed, which boosts morale and can help reduce turnover.
-*   **Freed-up Leadership:** Shift supervisors can focus on coaching and managing the floor, not answering repetitive questions.
-*   "This solution provides a clear and rapid return on investment by directly addressing core operational efficiencies, employee performance, and the customer experience."
+*   **Improved Consistency & Quality:**
+    *   **Metric:** Drive down drink order errors and increase customer satisfaction scores.
+    *   **Impact:** A consistent, high-quality experience protects and enhances the premium Starbucks brand.
+
+*   **Enhanced Employee Experience & Retention:**
+    *   **Metric:** Reduce 90-day turnover by providing new hires with the support they need to succeed.
+    *   **Impact:** Lower recruitment and retraining costs, and a more stable, experienced workforce.
+
+"This isn't just a tech solution; it's a business transformation tool aimed directly at operational efficiency and employee empowerment."
 
 ---
 
-### **Part 6: Q&A and Next Steps (2 Minutes)**
+### **Section 6: Q&A and Next Steps (2 Minutes)**
 
-**[SCREEN: Q&A / Thank You slide with contact info]**
+**Presenter:** "I'd like to open it up for any questions you may have."
 
-"I'd now like to open the floor for any questions you may have."
+**(Anticipated Q&A)**
 
-**Pre-Prepared Q&A (For the Presenter):**
-
-*   **Q: How secure is this? We're talking about proprietary recipes and policies.**
-    *   **A:** Security is paramount. watsonx Orchestrate is an enterprise-grade platform built on IBM Cloud, which adheres to the highest security standards. Your data, knowledge bases, and models are yours and are not used to train base models. We can implement this within your own secure VPC for maximum protection.
-*   **Q: How does this integrate with our real-time inventory system, not just a static file?**
-    *   **A:** Great question. The `Recipe_Expert_Agent` used a simple file for this demo, but the custom Python tool can be written to call any API. We would work with your IT team to connect it directly to your inventory management system's API, allowing a barista to ask, "Are we out of oat milk?" and get a real-time answer.
-*   **Q: How difficult is it to update the knowledge base when a policy changes?**
-    *   **A:** It's incredibly simple. You would simply update the source document—the `.txt` or `.pdf` file—and re-import it into the knowledge base with a single command. There's no complex re-training of the model required. This ensures your Partner Pro is always up-to-date.
-*   **Q: Can this be used for more than just onboarding?**
-    *   **A:** Absolutely. Onboarding is the first step. You can easily add new collaborator agents for things like equipment troubleshooting ("The espresso machine is showing error code E5"), marketing promotions, or even shift scheduling. It's a platform designed to grow with your needs.
+*   **Q: How difficult is it to add our own documents to the knowledge base?**
+    *   **A:** It's very straightforward. The platform supports common formats like PDF, DOCX, and TXT. You can update and add new documents through the ADK or UI, and the knowledge base is refreshed automatically.
+*   **Q: Can this integrate with our existing IT systems, like ServiceNow?**
+    *   **A:** Absolutely. That's a core strength of Orchestrate. The ADK allows your developers to build tools that connect to any system with an API. We demonstrated this with the ticket creation.
+*   **Q: How does the AI handle questions it doesn't know the answer to?**
+    *   **A:** It's designed to be safe and avoid making things up. If it can't find a relevant answer in the knowledge base, it will respond honestly, saying it doesn't have the information and will advise the partner to ask their manager, which is the correct fallback procedure.
+*   **Q: What about security and our proprietary data?**
+    *   **A:** This is built on IBM watsonx, an enterprise-grade platform designed for trust and security. Your data is your own. It is used solely to train and operate your assistant within your secure environment.
 
 **(Call to Action)**
 
-*   "Thank you for your questions. We believe the Partner Pro Assistant can be a game-changer for your store operations and partner development."
-*   "As a next step, we would like to propose a collaborative, hands-on workshop with your team. We can take a few of your real training documents and connect to a test API to build a functional proof-of-concept in just a few days, proving out the value for your specific environment."
-*   "Thank you again for your time and the opportunity to present this vision."
+**Presenter:** "Thank you. Our vision is to put a trusted AI co-pilot in the hands of every Starbucks partner.
+
+As a next step, we propose a **two-hour discovery workshop** with your operations and IT teams. In this session, we can identify the top 3-5 use cases beyond onboarding and map out a tailored Proof of Concept plan to bring the Partner Pod Assistant to life in a pilot store.
+
+Thank you for your time."
