@@ -1,0 +1,25 @@
+spec_version: v1
+    kind: knowledge_base
+    name: policy_kb
+    description: >
+      Contains official company documents regarding employee policies, including Paid Time Off (PTO), remote work guidelines, and code of conduct. Use this to answer specific questions from new hires about company rules and benefits.
+    documents:
+      - "knowledge_docs/pto_policy.txt"
+      - "knowledge_docs/remote_work_policy.txt"
+    vector_index:
+      embeddings_model_name: ibm/slate-125m-english-rtrvr-v2
+    ```
+
+### Step 2: Create the Python Tools
+
+Next, we will develop the Python-based tools that our HR and IT agents will use to perform actions. These tools will simulate interactions with real enterprise systems by using realistic synthetic data.
+
+#### A. HRIS Tools
+
+**Business Value:** These tools automate the retrieval and management of employee data, ensuring consistency and reducing the risk of manual data entry errors. They form the backbone of the HR onboarding process.
+
+**Technical Implementation:** The `hris_tools.py` file contains three functions decorated with `@tool`. Each function simulates an HRIS action: fetching new hire data, checking their onboarding task status, and updating their profile. The data is hardcoded for demo purposes but structured to mimic a real API response.
+
+Create the file `tools/hris_tools.py`:
+
+**File: `tools/hris_tools.py`**
