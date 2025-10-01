@@ -1,0 +1,88 @@
+# tools/maintenance_tools.py
+    import random
+    from ibm_watsonx_orchestrate.agent_builder.tools import tool, ToolPermission
+
+    @tool(name="log_maintenance_ticket", description="Logs a new maintenance ticket in the service system for broken equipment.", permission=ToolPermission.ADMIN)
+    def log_maintenance_ticket(equipment_name: str, error_code: str, store_id: str = "SBUX-042") -> str:
+        """
+        Logs a new maintenance ticket in the service system for broken equipment. This tool should be used
+        when troubleshooting steps have failed and a technician is required.
+
+        Args:
+            equipment_name (str): The name of the equipment that is broken (e.g., "Mastrena II").
+            error_code (str): The error code displayed on the machine, if any.
+            store_id (str): The unique identifier for the store location. Defaults to "SBUX-042".
+
+        Returns:
+            str: A confirmation message with the newly created ticket number.
+        """
+        # In a real-world scenario, this would make an API call to a system like ServiceNow or Jira.
+        # For this demo, we simulate the API call and return a mock ticket number to demonstrate functionality.
+        try:
+            print(f"Simulating API call to log ticket for '{equipment_name}' with error '{error_code}' at store '{store_id}'...")
+            ticket_number = f"INC{random.randint(700, 999)}89"
+            confirmation_message = f"Successfully logged maintenance ticket #{ticket_number}."
+            return confirmation_message
+        except Exception as e:
+            # Basic error handling for a real-world scenario
+            return f"Failed to log maintenance ticket. Error: {str(e)}"
+
+    ```
+
+### Step 4.3: Define the Collaborator Agents
+
+Collaborator agents are specialists. By creating them, we demonstrate how to build a scalable and maintainable multi-agent system where each agent has a clear, defined role.
+
+1.  **Create the `Maintenance_Request_Agent`**: This agent is purely action-oriented. Its sole purpose is to use the `log_maintenance_ticket` tool.
+
+    **Business Value**: This demonstrates role specialization. By isolating the maintenance function, you can manage its logic, tools, and connections independently without affecting other parts of the Co-Pilot system.
+
+    ```yaml
+    # agents/maintenance_agent.yaml
+    spec_version: v1
+    kind: native
+    name: Maintenance_Request_Agent
+    llm: watsonx/ibm/granite-3-8b-instruct
+    style: default
+    description: >
+      A specialized agent for handling equipment maintenance tasks. Use this agent to log a new
+      service or maintenance ticket when a piece of equipment, like an espresso machine, is broken
+      and requires a technician. It uses the log_maintenance_ticket tool.
+    instructions: >
+      Your only purpose is to create maintenance tickets using the log_maintenance_ticket tool.
+      When asked to log a ticket, confirm the equipment name and error code with the user.
+      Once you have the necessary information, execute the tool and provide the confirmation
+      message back to the user. Do not answer any other types of questions.
+    tools:
+      - log_maintenance_ticket
+    ```
+
+2.  **Create the `HR_Policy_Agent`**: This agent is a knowledge specialist with a focused scope. It uses the same knowledge base as the supervisor but is instructed to only answer questions related to HR.
+
+    **Business Value**: This pattern shows how a single source of truth (the knowledge base) can be securely and effectively leveraged by multiple specialized agents. It prevents "knowledge bleed" and ensures that the HR agent only provides answers from the official employee handbook.
+
+    ```yaml
+    # agents/hr_agent.yaml
+    spec_version: v1
+    kind: native
+    name: HR_Policy_Agent
+    llm: watsonx/ibm/granite-3-8b-instruct
+    style: default
+    description: >
+      A specialized agent that answers questions about human resources (HR) policies using the
+      official Employee Handbook. Use this agent for queries about dress code, time-off policies,
+      and official procedures for handling customer complaints.
+    instructions: >
+      You are an HR Policy expert. Your purpose is to answer questions using ONLY the information
+      found in your knowledge base, which contains the Employee Handbook.
+      If a question is about something other than HR policies (e.g., equipment, promotions),
+      state that you cannot answer and that the query is outside your scope.
+    knowledge_base:
+      - store_operations_kb
+    ```
+
+### Step 4.4: Define the Supervisor Agent
+
+The `Store_Operations_CoPilot` is the "brain" of the operation. It's the primary interface for the user and is responsible for understanding intent and delegating tasks to the correct collaborator.
+
+**Business Value**: The supervisor agent pattern is the key to creating a scalable, intelligent, and user-friendly AI assistant. It provides a single point of interaction for the user while orchestrating a powerful team of specialized agents in the background, showcasing the advanced reasoning and routing capabilities of watsonx Orchestrate.
