@@ -1,0 +1,10 @@
+spec_version: v1
+kind: knowledge_base 
+name: fincorp_compliance_kb
+description: >
+   Contains FinCorp's internal compliance policies, including Anti-Money Laundering (AML) thresholds, fraud detection rules, and lists of high-risk jurisdictions. Use this to verify if financial transactions adhere to company and regulatory standards.
+documents:
+   - "knowledge_base_docs/aml_policy_v1.txt"
+   - "knowledge_base_docs/fraud_detection_rules.txt"
+vector_index:
+   embeddings_model_name: ibm/slate-125m-english-rtrvr-v2
